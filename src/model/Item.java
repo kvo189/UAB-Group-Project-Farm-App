@@ -45,6 +45,11 @@ public class Item extends Component{
         throw new ClassCastException();
     }
 
+    @Override
+    public void deleteItem() {
+        
+    }
+
     /*
     @Override
     public void deleteItem(){
@@ -61,52 +66,43 @@ public class Item extends Component{
         return price;
     }
 
-    @Override
     public void setLocationX(int locationX){
         this.locationX = locationX;
     }
 
-    @Override
+
     public void setLocationY(int locationY){
         this.locationY = locationY;
     }
 
-    @Override
     public int getLocationX(){
         return locationX;
     }
 
-    @Override
     public int getLocationY(){
         return locationY;
     }
 
-    @Override
     public void setLength(int length){
         this.length = length;
     }
 
-    @Override
     public int getLength(){
         return length;
     }
 
-    @Override
     public void setWidth(int width){
         this.width = width;
     }
 
-    @Override
     public int getWidth(){
         return width;
     }
 
-    @Override
     public void setHeight(int height){
         this.height = height;
     }
 
-    @Override
     public int getHeight(){
         return height;
     }
