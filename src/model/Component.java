@@ -20,7 +20,6 @@ public abstract class Component {
     public abstract void setLength();
     public abstract void changeLength();
 
-
     public abstract void setWidth();
     public abstract void changeWidth();
 
