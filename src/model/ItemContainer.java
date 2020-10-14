@@ -22,7 +22,7 @@ public class ItemContainer extends Component{
                           int length,
                           int width,
                           int height) {
-
+        this.name = name;
         this.price = price;
         this.locationX = locationX;
         this.locationY = locationY;
