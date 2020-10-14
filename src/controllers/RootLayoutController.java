@@ -5,6 +5,8 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import model.Component;
+import model.ItemContainer;
 
 public class RootLayoutController {
     @FXML
@@ -26,7 +28,12 @@ public class RootLayoutController {
     @FXML
     private void initialize() {
         TreeItem<String> root = new TreeItem<>("Farm");
+        Component barn = new ItemContainer("Barn", 1000, 10, 15, 200, 100, 50);
+
         treeView.setRoot(root);
+        root.setExpanded(true);
+        TreeItem<String> barnNode = new TreeItem<>(barn.getName());
+        root.getChildren().add(barnNode);
 
         treeView.getSelectionModel().selectedItemProperty().addListener( new ChangeListener() {
 
