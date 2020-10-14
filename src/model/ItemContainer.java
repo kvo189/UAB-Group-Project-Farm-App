@@ -101,23 +101,6 @@ public class ItemContainer extends Component{
         return length;
     }
 
-    public void setWidth() {
-
-    }
-
-
-    public void changeWidth() {
-
-    }
-
-    public void setHeight() {
-
-    }
-
-    public void changeHeight() {
-
-    }
-
     public void setWidth(int width) {
         this.width = width;
     }
@@ -134,13 +117,8 @@ public class ItemContainer extends Component{
         return height;
     }
 
-
     public void addItemContainer(ArrayList<ItemContainer> insertedItem) {
-
         ItemContainer.add(insertedItem);
-
-
-
     }
 
     private static void add(ArrayList<ItemContainer> insertedItem) {
