@@ -50,12 +50,6 @@ public class Item extends Component{
         
     }
 
-    /*
-    @Override
-    public void deleteItem(){
-    }
-     */
-
     @Override
     public void setPrice(int price){
         this.price = price;
