@@ -13,7 +13,7 @@ public class ItemContainer extends Component{
     private int height;
 
     private String name;
-    private List<ItemContainer> itemContainer;
+    private ArrayList<ItemContainer> itemContainer;
 
     public ItemContainer (String name,
                           int price,
@@ -101,11 +101,27 @@ public class ItemContainer extends Component{
         return length;
     }
 
+    public void setWidth() {
+
+    }
+
+
+    public void changeWidth() {
+
+    }
+
+    public void setHeight() {
+
+    }
+
+    public void changeHeight() {
+
+    }
+
     public void setWidth(int width) {
         this.width = width;
     }
 
-    @Override
     public int getWidth() {
         return width;
     }
@@ -114,16 +130,20 @@ public class ItemContainer extends Component{
         this.height = height;
     }
 
-    @Override
     public int getHeight() {
         return height;
     }
 
-    @Override
+
     public void addItemContainer(ArrayList<ItemContainer> insertedItem) {
 
+        ItemContainer.add(insertedItem);
 
 
+
+    }
+
+    private static void add(ArrayList<ItemContainer> insertedItem) {
     }
 
 
