@@ -31,72 +31,47 @@ public class Item extends Component{
     }
 
     @Override
-    public void addItemContainer() {
+    public void add(){
         throw new ClassCastException();
     }
 
     @Override
-    public void deleteItemContainer() {
-        throw new ClassCastException();
-    }
+    public void delete() { throw new ClassCastException(); }
 
     @Override
-    public void addItem(){
-        throw new ClassCastException();
-    }
+    public void setPrice(int price){ this.price = price; }
 
     @Override
-    public void deleteItem() {
-        
-    }
+    public int getPrice(){ return price; }
 
     @Override
-    public void setPrice(int price){
-        this.price = price;
-    }
+    public void setLocationX(int locationX){ this.locationX = locationX; }
 
     @Override
-    public int getPrice(){
-        return price;
-    }
+    public void setLocationY(int locationY){ this.locationY = locationY; }
 
-    public void setLocationX(int locationX){
-        this.locationX = locationX;
-    }
+    @Override
+    public int getLocationX(){ return locationX; }
 
+    @Override
+    public int getLocationY(){ return locationY; }
 
-    public void setLocationY(int locationY){
-        this.locationY = locationY;
-    }
+    @Override
+    public void setLength(int length){ this.length = length; }
 
-    public int getLocationX(){
-        return locationX;
-    }
+    @Override
+    public int getLength(){ return length; }
 
-    public int getLocationY(){
-        return locationY;
-    }
+    @Override
+    public void setWidth(int width){ this.width = width; }
 
-    public void setLength(int length){
-        this.length = length;
-    }
+    @Override
+    public int getWidth(){ return width; }
 
-    public int getLength(){
-        return length;
-    }
+    @Override
+    public void setHeight(int height){ this.height = height; }
 
-    public void setWidth(int width){
-        this.width = width;
-    }
-
-    public int getWidth(){
-        return width;
-    }
-
-    public void setHeight(int height){
-        this.height = height;
-    }
-
+    @Override
     public int getHeight(){
         return height;
     }
