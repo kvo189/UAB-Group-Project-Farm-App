@@ -1,28 +1,29 @@
 package model;
 
-abstract class Component {
-    private String name;
+public abstract class Component {
+    public abstract void getName();
+    public abstract void setName();
+    public abstract void changeName();
 
-    Component(String name){
-        this.name = name;
-    }
+    public abstract void addItemContainer();
+    public abstract void deleteItemContainer();
 
-    public String getName() {
-        return name;
-    }
+    public abstract void addItem();
+    public abstract void deleteItem();
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public abstract void setPrice();
+    public abstract void changePrice();
+
+    public abstract void setLocationX();
+    public abstract void setLocationY();
+
+    public abstract void setLength();
+    public abstract void changeLength();
 
 
+    public abstract void setWidth();
+    public abstract void changeWidth();
 
-//    Delete item
-//    Change name
-//    Change price
-//    Change location-x
-//    Change location-y
-//    Change length
-//    Change width
-//    Change height
+    public abstract void setHeight();
+    public abstract void changeHeight();
 }
