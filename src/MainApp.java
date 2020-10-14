@@ -9,26 +9,12 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class MainApp extends Application {
-    private static MainApp mainInstance;
     private Stage primaryStage;
     private BorderPane rootLayout;
 
-    public MainApp () {
-        super();
-    };
-
-    public static MainApp getInstance() {
-        if (mainInstance == null) {
-            mainInstance = new MainApp();
-        }
-        return mainInstance;
-    }
-
     @Override
     public void start(Stage primaryStage) throws Exception{
-        mainInstance = this;
         this.primaryStage = primaryStage;
-        primaryStage.setTitle("Farm App");
         initRootLayout();
     }
     /**
@@ -39,10 +25,11 @@ public class MainApp extends Application {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/RootLayout.fxml"));
-            rootLayout = (BorderPane) loader.load();
+            rootLayout = loader.load();
 
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
+            primaryStage.setTitle("Farm App");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {
