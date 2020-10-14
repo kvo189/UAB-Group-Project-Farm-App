@@ -1,13 +1,13 @@
 package controllers;
 
 public class RootLayoutController {
-    private static RootLayoutController RootLayout;
+    private static RootLayoutController rootLayout;
     private RootLayoutController() {}
 
     public static RootLayoutController getInstance() {
-        if (RootLayout == null) {
-            RootLayout = new RootLayoutController();
+        if (rootLayout == null) {
+            rootLayout = new RootLayoutController();
         }
-        return RootLayout;
+        return rootLayout;
     }
 }

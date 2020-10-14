@@ -13,7 +13,7 @@ public class MainApp extends Application {
     private BorderPane rootLayout;
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage){
         this.primaryStage = primaryStage;
         initRootLayout();
     }
@@ -22,8 +22,11 @@ public class MainApp extends Application {
      */
     public void initRootLayout() {
         try {
+            RootLayoutController rootLayoutController = RootLayoutController.getInstance();
+
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
+            loader.setController(rootLayoutController);
             loader.setLocation(MainApp.class.getResource("view/RootLayout.fxml"));
             rootLayout = loader.load();
 
