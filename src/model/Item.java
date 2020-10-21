@@ -1,8 +1,6 @@
 package model;
 
 public class Item extends Component{
-
-    private String name;
     private int price;
     private int locationX;
     private int locationY;
@@ -11,7 +9,7 @@ public class Item extends Component{
     private int height;
 
     public Item(String name, int price, int locationX, int locationY, int length, int width, int height){
-        this.name = name;
+        super(name);
         this.price = price;
         this.locationX = locationX;
         this.locationY = locationY;
@@ -21,22 +19,12 @@ public class Item extends Component{
     }
 
     @Override
-    public String getName(){
-        return name;
-    }
-
-    @Override
-    public void setName(String name){
-        this.name = name;
-    }
-
-    @Override
-    public void add(){
+    public void addComp(Component component) {
         throw new ClassCastException();
     }
 
     @Override
-    public void delete() {
+    public void removeComp(Component component) {
         throw new ClassCastException();
     }
 
