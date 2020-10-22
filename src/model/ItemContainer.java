@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ItemContainer extends Component{
 
@@ -11,9 +10,7 @@ public class ItemContainer extends Component{
     private int length;
     private int width;
     private int height;
-
-    private String name;
-    private ArrayList<ItemContainer> itemContainer;
+    private ArrayList<Component> itemComponents = new ArrayList<>();
 
     public ItemContainer (String name,
                           int price,
@@ -21,8 +18,9 @@ public class ItemContainer extends Component{
                           int locationY,
                           int length,
                           int width,
-                          int height) {
-
+                          int height
+    ) {
+        super(name);
         this.price = price;
         this.locationX = locationX;
         this.locationY = locationY;
@@ -31,98 +29,65 @@ public class ItemContainer extends Component{
         this.height = height;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public ArrayList<Component> getItemComponents() {
+        return itemComponents;
     }
 
     @Override
-    public void addItemContainer() {
-
+    public void addComp(Component component) {
+        itemComponents.add(component);
     }
-
     @Override
-    public void deleteItemContainer() {
-
+    public void removeComp(Component component) {
+        itemComponents.remove(component);
     }
-
-    public void addItemContainer(ItemContainer item) {
-        itemContainer.add(item);
-    }
-
-    public void deleteItemContainer(ItemContainer item) {
-        itemContainer.remove(item);
-    }
-
-    public List<ItemContainer> getContainerList() {
-        return itemContainer;
-    }
-
-    public void addItem() {
-        throw new ClassCastException();
-    }
-
-    public void deleteItem() {
-        throw new ClassCastException();
-    }
-
+    @Override
     public void setPrice(int price) {
         this.price = price;
     }
-
+    @Override
     public int getPrice() {
         return price;
     }
-
+    @Override
     public void setLocationX(int locationX) {
         this.locationX = locationX;
     }
-
+    @Override
     public void setLocationY(int locationY) {
         this.locationY = locationY;
     }
-
+    @Override
     public int getLocationX() {
         return locationX;
     }
-
+    @Override
     public int getLocationY() {
         return locationY;
     }
-
+    @Override
     public void setLength(int length) {
         this.length = length;
     }
-
+    @Override
     public int getLength() {
         return length;
     }
-
+    @Override
     public void setWidth(int width) {
         this.width = width;
     }
-
+    @Override
     public int getWidth() {
         return width;
     }
-
+    @Override
     public void setHeight(int height) {
         this.height = height;
     }
-
+    @Override
     public int getHeight() {
         return height;
     }
-
-    public void addItemContainer(ArrayList<ItemContainer> insertedItem) {
-        ItemContainer.add(insertedItem);
-    }
-
-    private static void add(ArrayList<ItemContainer> insertedItem) {
-    }
-
 
 }
