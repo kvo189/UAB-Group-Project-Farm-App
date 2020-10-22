@@ -26,10 +26,10 @@ Eclipse will most likely work, but may need some tweaking since migrating projec
 
 <h3>Undergraduate Group 5 Members & Contributions</h3>
 
-<br>**Danny Do:** Composite Implementation, Component, Item Container, UML Diagram, miscellaneous code assistance
-<br>**Kevin Pham:** Composite Implementation, Component, Item Container, UML Diagram, miscellaneous code assistance
+<br>**Danny Do:** Composite Implementation, Component, Item, UML Diagram, miscellaneous code assistance
+<br>**Kevin Pham:** Composite Implementation, Item Container, UML Diagram, miscellaneous code assistance
 <br>**Khang Vo:** Singleton Implementation, worked on Drone Animation, Dashboard, Visualization, debugging and miscellaneous code assistance.
-<br>**Will Watts:** Gitlab setup, Readme file, Drone.png, UML, misc. git related assistance/documentation for team, debugging and misc. code/tasks
+<br>**Will Watts:** Gitlab setup, Readme file, Drone.png, UML, misc. git related assistance/documentation for team, debugging & misc. 
 <br>**Taylor Witt:** Composite Implementation, Drone Animation, UML, Item, Miscellaneous Code Assistance
 
 <h1>[Project Wiki](https://gitlab.com/watts57/uab-cs-420-group-project/-/wikis/Wiki/Catalog-%7C-Table-Of-Contents) </h1>
