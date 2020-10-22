@@ -1,18 +1,24 @@
 package controllers;
 
+import javafx.animation.TranslateTransition;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import model.Component;
+import model.Drone;
 import model.Item;
 import model.ItemContainer;
+import sun.reflect.generics.tree.Tree;
 
-import java.util.Iterator;
 import java.util.function.UnaryOperator;
 
 public class RootLayoutController {
@@ -25,7 +31,11 @@ public class RootLayoutController {
     @FXML
     private AnchorPane visualPane;
 
+    private Drone drone = null;
+    private Rectangle droneGraphic;
+
     private static RootLayoutController rootLayout;
+
     private RootLayoutController() {}
 
     public static RootLayoutController getInstance() {
@@ -47,9 +57,6 @@ public class RootLayoutController {
 
         barn.addComp(cow);
         farm.addComp(barn);
-
-//        drawComponent(barn.getLocationX(), barn.getLocationY(), barn.getLength(), barn.getWidth());
-//        drawComponent(cow.getLocationX(), cow.getLocationY(), cow.getLength(), cow.getWidth());
 
         TreeItem<Component> rootNode = new TreeItem<>(farm);
         TreeItem<Component> barnNode = new TreeItem<>(barn);
@@ -183,6 +190,11 @@ public class RootLayoutController {
     private void handleDelete() {
         TreeItem<Component> selectedTreeItem = treeView.getSelectionModel().getSelectedItem();
         if (!(selectedTreeItem.getParent() == null)) {
+            //if delete is performed on drone, then set the instance variables to null
+            if (selectedTreeItem.getValue() instanceof Drone){
+                drone = null;
+                droneGraphic = null;
+            }
             selectedTreeItem.getParent().getValue().removeComp(selectedTreeItem.getValue());
             selectedTreeItem.getParent().getChildren().remove(selectedTreeItem);
             visualPane.getChildren().clear();
@@ -190,6 +202,59 @@ public class RootLayoutController {
         }else{
             showErrorDialog("Invalid Operation", null, "Root item cannot be modified!");
         }
+    }
+
+    @FXML
+    private void handleScanFarm () {
+
+    }
+
+    @FXML
+    private void handleAddDrone () {
+        if (drone != null){
+            showErrorDialog("Invalid Operation", null, "\"Add Drone\" can only be performed if no drone exists!");
+            return;
+        }
+        TreeItem<Component> selectedTreeItem = treeView.getSelectionModel().getSelectedItem();
+        if (selectedTreeItem.getValue() instanceof ItemContainer){
+            drone = new Drone("Drone", 0, selectedTreeItem.getValue().getLocationX(), selectedTreeItem.getValue().getLocationY(), 50, 50, 5);
+            TreeItem<Component> droneNode = new TreeItem<>(drone);
+            selectedTreeItem.getValue().addComp(drone);
+            selectedTreeItem.getChildren().add(droneNode);
+            visualPane.getChildren().clear();
+            drawComponents(treeView.getRoot());
+        }else{
+            showErrorDialog("Invalid Operation", null, "\"Add Item\" can only be performed on Item Containers!");
+        }
+    }
+
+    @FXML
+    private void handleVisitItem () {
+        TreeItem<Component> selectedTreeItem = treeView.getSelectionModel().getSelectedItem();
+        int droneX = drone.getLocationX() + drone.getWidth()/2;
+        int droneY = drone.getLocationY() + drone.getLength()/2;
+        int targetX = selectedTreeItem.getValue().getLocationX() + selectedTreeItem.getValue().getWidth()/2;
+        int targetY = selectedTreeItem.getValue().getLocationY() + selectedTreeItem.getValue().getLength()/2;
+        int toX = -(droneX - targetX);
+        int toY = -(droneY - targetY);
+
+        //Instantiating TranslateTransition class
+        TranslateTransition translate = new TranslateTransition();
+        //shifting the X and Y coordinates to designation
+        translate.setFromX(0);
+        translate.setFromY(0);
+        translate.setToX(toX);
+        translate.setToY(toY);
+        //setting the duration for the Translate transition
+        translate.setDuration(Duration.millis(1000));
+        //setting cycle count for the Translate transition
+        translate.setCycleCount(2);
+        //the transition will set to be auto reversed by setting this to true
+        translate.setAutoReverse(true);
+        //setting drone graphic as the node onto which the transition will be applied
+        translate.setNode(droneGraphic);
+        //playing the transition
+        translate.play();
     }
 
     private void drawComponent (String name, int x, int y, int length, int width, Color color) {
@@ -206,6 +271,15 @@ public class RootLayoutController {
         visualPane.getChildren().addAll(rectangle,text);
     }
 
+    private void drawDrone (int x, int y, int length, int width) {
+        Rectangle rectangle = new Rectangle(width,length, Color.TRANSPARENT);
+        droneGraphic = rectangle;
+        rectangle.setStroke(Color.BLUE);
+        rectangle.setStrokeWidth(2);
+        rectangle.relocate(x,y);
+        visualPane.getChildren().add(rectangle);
+    }
+
     private void drawComponents(TreeItem<Component> root){
         drawComponent(root.getValue().getName(),
                 root.getValue().getLocationX(),
@@ -214,6 +288,13 @@ public class RootLayoutController {
                 root.getValue().getWidth(),
                 Color.GREEN);
         for(TreeItem<Component> child: root.getChildren()){
+            if (child.getValue() instanceof Drone){
+                drawDrone(child.getValue().getLocationX(),
+                        child.getValue().getLocationY(),
+                        child.getValue().getLength(),
+                        child.getValue().getWidth());
+                continue;
+            }
             if(child.getChildren().isEmpty()){
                 drawComponent(child.getValue().getName(),
                         child.getValue().getLocationX(),
