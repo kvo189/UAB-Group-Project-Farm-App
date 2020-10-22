@@ -15,18 +15,18 @@ The on screen buttons can be used to control the drone animation. To have the dr
 
 <h3> Application Requirements </h3>
 
-This project was created with Java JDK 8 (also listed as 1.8) and JavaFX. 
+This project was created with Java JDK 8 (often listed as version string 1.8) and JavaFX. 
 Our team used IntelliJ IDEA to create this project.
  
-We recommend you use IntelliJ when viewing and running this.
+**We recommend you use IntelliJ when viewing this code or running the project. Eclipse may or may not require some tweaking of code or settings to have work properly (migrating projects between Eclipse and IntelliJ is often unpredictable)**
 
 
 <h3>Undergraduate Group 5 Members & Contributions</h3>
 
-<br>**Danny Do:** Composite, Component, Item Container, UML Diagram
-<br>**Kevin Pham:** Composite, Component, Item Container, UML Diagram
-<br>**Khang Vo:** Singleton Implementation, worked on Drone Animation, Visualization, debugging and miscellaneous code assistance.
-<br>**Will Watts:** Gitlab setup, Readme file, misc. git related assistance for team, debugging and misc. code assistance
-<br>**Taylor Whitt:** Drone Animation, Miscellaneous Code Assistance
+<br>**Danny Do:** Composite Implementation, Component, Item Container, UML Diagram, miscellaneous code assistance
+<br>**Kevin Pham:** Composite Implementation, Component, Item Container, UML Diagram, miscellaneous code assistance
+<br>**Khang Vo:** Singleton Implementation, worked on Drone Animation, Dashboard, Visualization, debugging and miscellaneous code assistance.
+<br>**Will Watts:** Gitlab setup, Readme file, Drone.png, UML, misc. git related assistance/documentation for team, debugging and misc. code/tasks
+<br>**Taylor Witt:** Composite Implementation, Drone Animation, UML, Item, Miscellaneous Code Assistance
 
 
