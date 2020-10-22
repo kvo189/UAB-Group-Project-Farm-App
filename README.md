@@ -32,4 +32,4 @@ Eclipse will most likely work, but may need some tweaking since migrating projec
 <br>**Will Watts:** Gitlab setup, Readme file, Drone.png, UML, misc. git related assistance/documentation for team, debugging and misc. code/tasks
 <br>**Taylor Witt:** Composite Implementation, Drone Animation, UML, Item, Miscellaneous Code Assistance
 
-<h3>[Project Wiki](https://gitlab.com/watts57/uab-cs-420-group-project/-/wikis/Wiki/Catalog-%7C-Table-Of-Contents) </h3>
+<h1>[Project Wiki](https://gitlab.com/watts57/uab-cs-420-group-project/-/wikis/Wiki/Catalog-%7C-Table-Of-Contents) </h1>
