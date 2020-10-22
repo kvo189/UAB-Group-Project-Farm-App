@@ -23,9 +23,9 @@ We recommend you use IntelliJ when viewing and running this.
 
 <h3>Undergraduate Group 5 Members & Contributions</h3>
 
-<br>**Danny Do:** Composite, Component, Item Container
-<br>**Kevin Pham:** Composite, Component, Item Container
-<br>**Khang Vo:** Drone Animation, Visualization, debugging and miscellaneous code assistance.
+<br>**Danny Do:** Composite, Component, Item Container, UML Diagram
+<br>**Kevin Pham:** Composite, Component, Item Container, UML Diagram
+<br>**Khang Vo:** Singleton Implementation, worked on Drone Animation, Visualization, debugging and miscellaneous code assistance.
 <br>**Will Watts:** Gitlab setup, Readme file, misc. git related assistance for team, debugging and misc. code assistance
 <br>**Taylor Whitt:** Drone Animation, Miscellaneous Code Assistance
 
