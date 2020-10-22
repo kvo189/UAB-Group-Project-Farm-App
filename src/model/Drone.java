@@ -1,6 +1,6 @@
 package model;
 
-public class Item extends Component{
+public class Drone extends Component{
     private int price;
     private int locationX;
     private int locationY;
@@ -8,7 +8,7 @@ public class Item extends Component{
     private int width;
     private int height;
 
-    public Item(String name, int price, int locationX, int locationY, int length, int width, int height){
+    public Drone(String name, int price, int locationX, int locationY, int length, int width, int height){
         super(name);
         this.price = price;
         this.locationX = locationX;
