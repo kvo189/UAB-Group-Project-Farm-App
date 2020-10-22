@@ -1,23 +1,21 @@
 package controllers;
 
+import javafx.animation.PathTransition;
+import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.*;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import model.Component;
 import model.Drone;
 import model.Item;
 import model.ItemContainer;
-import sun.reflect.generics.tree.Tree;
 
 import java.util.function.UnaryOperator;
 
@@ -30,14 +28,15 @@ public class RootLayoutController {
     private Button saveBtn;
     @FXML
     private AnchorPane visualPane;
-
     private Drone drone = null;
     private Rectangle droneGraphic;
-
     private static RootLayoutController rootLayout;
-
     private RootLayoutController() {}
 
+    /**
+     * Initializes an instance of the controller if one has not been created.
+     * @return type object of this singleton class.
+     */
     public static RootLayoutController getInstance() {
         if (rootLayout == null) {
             rootLayout = new RootLayoutController();
@@ -206,7 +205,40 @@ public class RootLayoutController {
 
     @FXML
     private void handleScanFarm () {
+        if (drone == null || droneGraphic == null) {
+            showErrorDialog("Invalid Operation", null, "\"Scan farm\" can only be performed when a drone component exists!");
+            return;
+        }
+        int droneX = drone.getLocationX();
+        int droneY = drone.getLocationY();
+        double droneW = (double)drone.getWidth()/2;
+        double droneL = (double)drone.getLength()/2;
 
+        Path path = new Path();
+
+        path.getElements().add(new MoveTo(droneW,droneL));
+        path.getElements().add(new LineTo(-droneX + droneW, -droneY + droneL));
+        path.getElements().add(new VLineTo(750 - droneY + droneL));
+        path.getElements().add(new HLineTo(50 - droneX + droneW));
+        path.getElements().add(new VLineTo(- droneY + droneL));
+
+        for (int i = 100; i < 600; i+=100) {
+            path.getElements().add(new HLineTo(i - droneX + droneW));
+            path.getElements().add(new VLineTo(750 - droneY + droneL));
+            path.getElements().add(new HLineTo(i+50 - droneX + droneW));
+            path.getElements().add(new VLineTo(- droneY + droneL));
+        }
+
+
+        path.getElements().add(new LineTo(droneW, droneL));
+
+        PathTransition pathTransition = new PathTransition();
+        pathTransition.setDuration(Duration.millis(5000));
+        pathTransition.setPath(path);
+        pathTransition.setNode(droneGraphic);
+        pathTransition.setCycleCount(1);
+        pathTransition.setAutoReverse(true);
+        pathTransition.play();
     }
 
     @FXML
@@ -230,6 +262,10 @@ public class RootLayoutController {
 
     @FXML
     private void handleVisitItem () {
+        if (drone == null) {
+            showErrorDialog("Invalid Operation", null, "\"Visit Item/Item Containers\" can only be performed when a drone component exists!");
+            return;
+        }
         TreeItem<Component> selectedTreeItem = treeView.getSelectionModel().getSelectedItem();
         int droneX = drone.getLocationX() + drone.getWidth()/2;
         int droneY = drone.getLocationY() + drone.getLength()/2;
@@ -265,8 +301,8 @@ public class RootLayoutController {
 
         Text text = new Text();
         text.setText(name);
-        text.setX((x+width/2) - text.getLayoutBounds().getWidth()/2);
-        text.setY((y+length/2) + text.getLayoutBounds().getHeight()/2);
+        text.setX((double)(x+width/2) - text.getLayoutBounds().getWidth()/2);
+        text.setY((double)(y+length/2) + text.getLayoutBounds().getHeight()/2);
 
         visualPane.getChildren().addAll(rectangle,text);
     }
