@@ -1,8 +1,11 @@
-<h2> Farm Application:</h2>
-<h3>Design and Implementation Part 1        |      CS 420, Fall 2020       |      Due Oct. 23, 2020</h3>
+<h1> Farm Application:</h1>
+<h3>Design and Implementation Part 1        |      CS 420, Fall 2020       |      Due Oct. 23, 2020     | Undergraduate Group 5</h3>
 Our group has created a dashboard for our automated farm application. 
 We have also created an animation depicting the movement of a drone throughout the farm.
 <br>
+
+
+<h2>[GitLab Repository for the Project](https://gitlab.com/watts57/uab-cs-420-group-project/-/tree/master)</h2>
 
 <h3>Application Instructions</h3>
 
