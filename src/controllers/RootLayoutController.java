@@ -7,8 +7,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.*;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
@@ -32,6 +35,7 @@ public class RootLayoutController {
     private Rectangle droneGraphic;
     private static RootLayoutController rootLayout;
     private RootLayoutController() {}
+    private Image dronePng = new Image("drone.png");
 
     /**
      * Initializes an instance of the controller if one has not been created.
@@ -53,7 +57,6 @@ public class RootLayoutController {
         ItemContainer farm = new ItemContainer("Farm", 0, 0, 0, 800, 600, 0);
         ItemContainer barn = new ItemContainer("Barn", 1000, 10, 15, 200, 100, 50);
         Item cow = new Item("Cow", 1000, 30, 35, 20, 20, 50);
-
         barn.addComp(cow);
         farm.addComp(barn);
 
@@ -310,9 +313,11 @@ public class RootLayoutController {
     private void drawDrone (int x, int y, int length, int width) {
         Rectangle rectangle = new Rectangle(width,length, Color.TRANSPARENT);
         droneGraphic = rectangle;
+        //ImageView droneImageView = new ImageView(new Image("drone.png");
         rectangle.setStroke(Color.BLUE);
         rectangle.setStrokeWidth(2);
         rectangle.relocate(x,y);
+        rectangle.setFill(new ImagePattern(dronePng));
         visualPane.getChildren().add(rectangle);
     }
 
