@@ -76,6 +76,7 @@ public class RootLayoutController {
 
 
 
+
         treeView.setRoot(rootNode);
         treeView.getSelectionModel().selectFirst();
         rootNode.setExpanded(true);
@@ -85,6 +86,9 @@ public class RootLayoutController {
         rootNode.getChildren().add(barnNode);
 
         drawComponents(rootNode);
+
+
+
 
         //This is used to create the cells in our tree.
         treeView.setCellFactory(tv ->{
@@ -153,13 +157,16 @@ public class RootLayoutController {
 
 
         //if the x or y coordinates are outside the bounds of the root (farm)
-        if (xVal > 600 || yVal > 800) {
+        int rootLength = treeView.getRoot().getValue().getLength();
+        int rootWidth = treeView.getRoot().getValue().getWidth();
+
+        if (xVal > rootWidth || yVal > rootLength) {
             showErrorDialog("Invalid Input", "Invalid position value(s)", "X cannot be larger than 600 and Y cannot be larger than 800!");
             return;
         }
 
         // make sure that the item's width doesn't make its edge(s) go out of bounds of the farm
-        if (xVal+widthVal > 600 || yVal+lengthVal > 800) {
+        if (xVal+widthVal > rootWidth || yVal+lengthVal > rootLength) {
             showErrorDialog("Invalid Input", "Invalid size value(s)", "X + Width cannot be larger than 600 and Y + Length cannot be larger than 800!");
             return;
         }
@@ -238,6 +245,12 @@ public class RootLayoutController {
     //Have the drone scan the farm, row by row.
     @FXML
     private void handleScanFarm () {
+
+        //track the dimensions of root container to use for calculating time of drone flight
+        //int rootLength and rootWidth are the length and width of farm
+        int rootLength = treeView.getRoot().getValue().getLength();
+        int rootWidth = treeView.getRoot().getValue().getWidth();
+
         if (drone == null || droneGraphic == null) {
             showErrorDialog("Invalid Operation", null, "\"Scan farm\" can only be performed when a drone component exists!");
             return;
@@ -249,33 +262,30 @@ public class RootLayoutController {
 
         Path path = new Path();
 
+        double droneSpeed = 30;
+
+
         path.getElements().add(new MoveTo(droneW,droneL));
-        path.getElements().add(new LineTo(-droneX + droneW, -droneY + droneL));
-        path.getElements().add(new VLineTo(750 - droneY + droneL));
-        path.getElements().add(new HLineTo(50 - droneX + droneW));
+        path.getElements().add(new LineTo(-droneX + droneW, -droneY ));
+        path.getElements().add(new VLineTo(rootLength - droneL - droneY));
+        path.getElements().add(new HLineTo(droneW - droneX + droneW));
         path.getElements().add(new VLineTo(- droneY + droneL));
 
-        for (int i = 100; i < 600; i+=100) {
+        for (int i = 100; i < rootWidth; i+=100) {
             path.getElements().add(new HLineTo(i - droneX + droneW));
-            path.getElements().add(new VLineTo(750 - droneY + droneL));
-            path.getElements().add(new HLineTo(i+50 - droneX + droneW));
+            path.getElements().add(new VLineTo(rootLength -droneL - droneY));
+            path.getElements().add(new HLineTo(i+droneW - droneX + droneW));
             path.getElements().add(new VLineTo(- droneY + droneL));
         }
-
-        //TODO: Remove magic numebers....600 and 800 should be variables. If not this spring, definitely fix ASAP!
-
-        //This is a rough approximation of the distance the drone is flying when it scans. This is multipled by time variables later.
-        //This is a sloppy but somewhat effective means of having the flight time tied to the distance traveled, which prevents
-        // strange visual defects like a teleporting drone, a drone moving around at insane speeds, etc.
-        int droneScanDistanceTotal = 600 / drone.getWidth() + 800 / drone.getLength();
 
 
 
         path.getElements().add(new LineTo(droneW, droneL));
 
         PathTransition pathTransition = new PathTransition();
-        //TODO: Parameterise this. 38400 = 38.4 seconds...this was chosen due to calculation based on internet searches on imagery drone fight speeds and adapting those. Seems sloppy and can do better with more time.
-        pathTransition.setDuration(Duration.millis(38400));
+
+
+        pathTransition.setDuration(Duration.millis(rootLength*(rootWidth/droneW)/(droneSpeed/droneL)));
         pathTransition.setPath(path);
         pathTransition.setNode(droneGraphic);
         pathTransition.setCycleCount(1);
