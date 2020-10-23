@@ -23,20 +23,30 @@ import model.ItemContainer;
 import java.util.function.UnaryOperator;
 
 public class RootLayoutController {
+    //declare our variables
+
+    //tree view to show the composite design pattern implementation....
     @FXML
     private TreeView<Component> treeView;
+    //declare our text fields
     @FXML
     private TextField nameTextField, xTextField, yTextField, lTextField, wTextField, hTextField, priceTextField;
+    //Save Button
     @FXML
     private Button saveBtn;
     @FXML
     private AnchorPane visualPane;
     private Drone drone = null;
+    //This rectangle is blue and forms a box around the drone image. Drone image lives in this box. Together they are easy to see in clutter.
     private Rectangle droneGraphic;
+    // Root Layout
     private static RootLayoutController rootLayout;
+    //parameterless constructor for RootLayoutController
     private RootLayoutController() {}
+    //This is drone.png, which is our depiction of our drone flying around.
     private final Image dronePng = new Image("drone.png");
 
+    //Singleton pattern setup for RootLayoutController
     /**
      * Initializes an instance of the controller if one has not been created.
      * @return type object of this singleton class.
@@ -252,6 +262,11 @@ public class RootLayoutController {
             path.getElements().add(new VLineTo(- droneY + droneL));
         }
 
+        //TODO: Remove magic numebers....600 and 800 should be variables. If not this spring, definitely fix ASAP!
+
+        //This is a rough approximation of the distance the drone is flying when it scans. This is multipled by time variables later.
+        //This is a sloppy but somewhat effective means of having the flight time tied to the distance traveled, which prevents
+        // strange visual defects like a teleporting drone, a drone moving around at insane speeds, etc.
         int droneScanDistanceTotal = 600 / drone.getWidth() + 800 / drone.getLength();
 
 
@@ -259,6 +274,7 @@ public class RootLayoutController {
         path.getElements().add(new LineTo(droneW, droneL));
 
         PathTransition pathTransition = new PathTransition();
+        //TODO: Parameterise this. 38400 = 38.4 seconds...this was chosen due to calculation based on internet searches on imagery drone fight speeds and adapting those. Seems sloppy and can do better with more time.
         pathTransition.setDuration(Duration.millis(38400));
         pathTransition.setPath(path);
         pathTransition.setNode(droneGraphic);
