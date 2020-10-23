@@ -76,6 +76,7 @@ public class RootLayoutController {
 
         drawComponents(rootNode);
 
+        //This is used to create the cells in our tree.
         treeView.setCellFactory(tv ->{
             TreeCell<Component> cell = new TreeCell<Component>() {
                 @Override
@@ -92,8 +93,11 @@ public class RootLayoutController {
                 }
             };
 
+
+            // cell selected? If so...
             cell.selectedProperty().addListener((observable, prevSelected, newSelected) -> {
                 Component cellItem = cell.getItem();
+                //and if the selected cell is empty
                 if (newSelected && (!cell.isEmpty())){
                     nameTextField.setText(cellItem.getName());
                     xTextField.setText(String.valueOf(cellItem.getLocationX()));
@@ -108,6 +112,7 @@ public class RootLayoutController {
             return cell;
         });
 
+        //Change values from text input
         UnaryOperator<TextFormatter.Change> filter = change -> {
             String text = change.getText();
 
@@ -126,6 +131,7 @@ public class RootLayoutController {
         priceTextField.setTextFormatter(new TextFormatter<>(filter));
     }
 
+    //Save objects after setting their values.
     @FXML
     private void handleSave() {
         int xVal = Integer.parseInt(xTextField.getText()),
@@ -134,19 +140,27 @@ public class RootLayoutController {
                 widthVal = Integer.parseInt(wTextField.getText()),
                 heightVal = Integer.parseInt(hTextField.getText()),
                 priceVal = Integer.parseInt(priceTextField.getText());
+
+
+        //if the x or y coordinates are outside the bounds of the root (farm)
         if (xVal > 600 || yVal > 800) {
             showErrorDialog("Invalid Input", "Invalid position value(s)", "X cannot be larger than 600 and Y cannot be larger than 800!");
             return;
         }
+
+        // make sure that the item's width doesn't make its edge(s) go out of bounds of the farm
         if (xVal+widthVal > 600 || yVal+lengthVal > 800) {
             showErrorDialog("Invalid Input", "Invalid size value(s)", "X + Width cannot be larger than 600 and Y + Length cannot be larger than 800!");
             return;
         }
+
+        //if the item is the root item (the farm), prevent it from being modified and throw an error.
         if(treeView.getSelectionModel().getSelectedItem().getParent() == null) {
             showErrorDialog("Invalid Operation", null, "Root item cannot be modified!");
             return;
         }
 
+        //set values of tree root and draw
         Component item = treeView.getSelectionModel().getSelectedItem().getValue();
         item.setName(nameTextField.getText());
         item.setLocationX(xVal);
@@ -159,6 +173,7 @@ public class RootLayoutController {
         drawComponents(treeView.getRoot());
     }
 
+    //Add new items to item containers
     @FXML
     private void handleAddItem() {
         TreeItem<Component> selectedTreeItem = treeView.getSelectionModel().getSelectedItem();
@@ -174,6 +189,7 @@ public class RootLayoutController {
         }
     }
 
+    // Add a new item container
     @FXML
     private void handleAddItemContainer() {
         TreeItem<Component> selectedTreeItem = treeView.getSelectionModel().getSelectedItem();
@@ -190,6 +206,7 @@ public class RootLayoutController {
         }
     }
 
+    // Delete a Component
     @FXML
     private void handleDelete() {
         TreeItem<Component> selectedTreeItem = treeView.getSelectionModel().getSelectedItem();
@@ -208,6 +225,7 @@ public class RootLayoutController {
         }
     }
 
+    //Have the drone scan the farm, row by row.
     @FXML
     private void handleScanFarm () {
         if (drone == null || droneGraphic == null) {
@@ -249,6 +267,7 @@ public class RootLayoutController {
         pathTransition.play();
     }
 
+    // Add a new drone to the farm.
     @FXML
     private void handleAddDrone () {
         if (drone != null){
@@ -268,6 +287,7 @@ public class RootLayoutController {
         }
     }
 
+    // Have the drone fly to an item and back.
     @FXML
     private void handleVisitItem () {
         if (drone == null) {
@@ -302,6 +322,7 @@ public class RootLayoutController {
         translate.play();
     }
 
+    //draw a new component's rectangular outline for display on the dashboard overview.
     private void drawComponent (String name, int x, int y, int length, int width, Color color) {
         Rectangle rectangle = new Rectangle(width,length, Color.TRANSPARENT);
         rectangle.setStroke(color);
@@ -316,6 +337,7 @@ public class RootLayoutController {
         visualPane.getChildren().addAll(rectangle,text);
     }
 
+    //draw the drone's outline rectangle and also show its icon within the rectangle.
     private void drawDrone (int x, int y, int length, int width) {
         Rectangle rectangle = new Rectangle(width,length, Color.TRANSPARENT);
         droneGraphic = rectangle;
@@ -355,6 +377,7 @@ public class RootLayoutController {
         }
     }
 
+    //Throw an error.
     private void showErrorDialog (String title, String header, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
