@@ -35,7 +35,7 @@ public class RootLayoutController {
     private Rectangle droneGraphic;
     private static RootLayoutController rootLayout;
     private RootLayoutController() {}
-    private Image dronePng = new Image("drone.png");
+    private final Image dronePng = new Image("drone.png");
 
     /**
      * Initializes an instance of the controller if one has not been created.
@@ -63,6 +63,8 @@ public class RootLayoutController {
         TreeItem<Component> rootNode = new TreeItem<>(farm);
         TreeItem<Component> barnNode = new TreeItem<>(barn);
         TreeItem<Component> cowNode = new TreeItem<>(cow);
+
+
 
         treeView.setRoot(rootNode);
         treeView.getSelectionModel().selectFirst();
@@ -232,11 +234,14 @@ public class RootLayoutController {
             path.getElements().add(new VLineTo(- droneY + droneL));
         }
 
+        int droneScanDistanceTotal = 600 / drone.getWidth() + 800 / drone.getLength();
+
+
 
         path.getElements().add(new LineTo(droneW, droneL));
 
         PathTransition pathTransition = new PathTransition();
-        pathTransition.setDuration(Duration.millis(5000));
+        pathTransition.setDuration(Duration.millis(38400));
         pathTransition.setPath(path);
         pathTransition.setNode(droneGraphic);
         pathTransition.setCycleCount(1);
@@ -276,7 +281,8 @@ public class RootLayoutController {
         int targetY = selectedTreeItem.getValue().getLocationY() + selectedTreeItem.getValue().getLength()/2;
         int toX = -(droneX - targetX);
         int toY = -(droneY - targetY);
-
+        int droneToTargetDistance = (int) Math.sqrt((targetY - droneY) * (targetY - droneY) + (targetX - droneX) * (targetX - droneX));
+        int travelTime = droneToTargetDistance / 30;
         //Instantiating TranslateTransition class
         TranslateTransition translate = new TranslateTransition();
         //shifting the X and Y coordinates to designation
