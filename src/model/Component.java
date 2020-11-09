@@ -53,4 +53,6 @@ public abstract class Component {
     public abstract int getHeight();
     //Set height of ItemContainer
     public abstract void setHeight(int height);
+    //accept
+    public abstract int accept(Visitor vis);
 }

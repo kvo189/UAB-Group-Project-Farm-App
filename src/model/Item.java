@@ -93,6 +93,8 @@ public class Item extends Component{
     public int getHeight(){
         return height;
     }
-
+    //accept hook
+    @Override
+    public int accept(Visitor vis){ return vis.visit(this);}
 
 }
