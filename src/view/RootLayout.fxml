@@ -1,25 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TreeView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="900.0" minWidth="1200.0" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="900.0" minWidth="1200.0" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <Menu mnemonicParsing="false" text="File">
@@ -93,14 +79,14 @@
                        <Label text="Name:" />
                        <Label text="Position (X,Y):" GridPane.rowIndex="1" />
                        <Label text="Size (L,W,H):" GridPane.rowIndex="2" />
-                       <Label text="Price:" GridPane.rowIndex="3" />
+                       <Label fx:id="pricetextField" text="Price:" GridPane.rowIndex="3" />
                   <Label text="Market Value" GridPane.rowIndex="5" />
-                  <TextField prefHeight="95.0" prefWidth="176.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                  <TextField fx:id="marketValueTextField" prefHeight="95.0" prefWidth="176.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <GridPane.margin>
                         <Insets bottom="2.0" top="2.0" />
                      </GridPane.margin>
                   </TextField>
-                  <Label text="Purchase Price" GridPane.rowIndex="4" />
+                  <Label fx:id="purchasePriceTextField" text="Purchase Price" GridPane.rowIndex="4" />
                   <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
                    </GridPane>
                    <VBox layoutX="14.0" layoutY="253.0" prefHeight="115.0" prefWidth="157.0">
