@@ -13,10 +13,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.*;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import model.Component;
-import model.Drone;
-import model.Item;
-import model.ItemContainer;
+import model.*;
 
 import java.util.function.UnaryOperator;
 
@@ -28,7 +25,7 @@ public class RootLayoutController {
     private TreeView<Component> treeView;
     //declare our text fields
     @FXML
-    private TextField nameTextField, xTextField, yTextField, lTextField, wTextField, hTextField, priceTextField;
+    private TextField nameTextField, xTextField, yTextField, lTextField, wTextField, hTextField, priceTextField, marketValueTextField, purchasePriceTextField;
     //Save Button
     @FXML
     private Button saveBtn;
@@ -118,6 +115,9 @@ public class RootLayoutController {
                     wTextField.setText(String.valueOf(cellItem.getWidth()));
                     hTextField.setText(String.valueOf(cellItem.getHeight()));
                     priceTextField.setText(String.valueOf(cellItem.getPrice()));
+                    marketValueTextField.setText(String.valueOf(cellItem.accept(new MarketValueVisitor())));
+                    purchasePriceTextField.setText(String.valueOf(cellItem.accept(new PurchasePriceVisitor())));
+
                 }
             });
 
