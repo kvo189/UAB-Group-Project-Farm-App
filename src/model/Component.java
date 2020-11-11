@@ -7,6 +7,13 @@ import javafx.beans.property.StringProperty;
 public abstract class Component {
     private final StringProperty name = new SimpleStringProperty();
 
+    //marketValue
+    public int getMarketValue;
+
+    //purchasePrice
+    public int getPurchasePrice;
+
+
     // this is a component class
     public Component(String name){
         setName(name);
