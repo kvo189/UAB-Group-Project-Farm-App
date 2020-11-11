@@ -3,6 +3,7 @@ package model;
 import java.util.Iterator;
 
 public class MarketValueVisitor implements Visitor{
+    private int marketValue;
     private int totalMarketValue;
     public MarketValueVisitor(){
         totalMarketValue = 0;
@@ -20,7 +21,7 @@ public class MarketValueVisitor implements Visitor{
     }
     @Override
     public int visit(Item item){
-        totalMarketValue = item.getMarketValue();
-        return totalMarketValue;
+        marketValue = item.getMarketValue();
+        return marketValue;
     }
 }
