@@ -51,6 +51,7 @@
                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                        </rowConstraints>
                        <TextField fx:id="nameTextField" prefHeight="27.0" prefWidth="150.0" GridPane.columnIndex="1">
                      <padding>
@@ -93,12 +94,14 @@
                        <Label text="Position (X,Y):" GridPane.rowIndex="1" />
                        <Label text="Size (L,W,H):" GridPane.rowIndex="2" />
                        <Label text="Price:" GridPane.rowIndex="3" />
-                  <Label text="Market Value" GridPane.rowIndex="4" />
-                  <TextField prefHeight="95.0" prefWidth="176.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <Label text="Market Value" GridPane.rowIndex="5" />
+                  <TextField prefHeight="95.0" prefWidth="176.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <GridPane.margin>
                         <Insets bottom="2.0" top="2.0" />
                      </GridPane.margin>
                   </TextField>
+                  <Label text="Purchase Price" GridPane.rowIndex="4" />
+                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
                    </GridPane>
                    <VBox layoutX="14.0" layoutY="253.0" prefHeight="115.0" prefWidth="157.0">
                        <Button mnemonicParsing="false" onAction="#handleAddDrone" prefHeight="25.0" prefWidth="155.0" text="+ Add Drone">

@@ -3,9 +3,9 @@ package model;
 import java.util.Iterator;
 
 public class MarketValueVisitor implements Visitor{
-    private int totalPrice;
+    private int totalMarketValue;
     public MarketValueVisitor(){
-        totalPrice = 0;
+        totalMarketValue = 0;
     }
     @Override
     public int visit(ItemContainer itemContainer){
@@ -13,14 +13,14 @@ public class MarketValueVisitor implements Visitor{
         while(iterator.hasNext()){
             Component currentComponent = iterator.next();
             if(currentComponent instanceof Item){
-                totalPrice += ((Item) currentComponent).getMarketValue();
+                totalMarketValue += ((Item) currentComponent).getMarketValue();
             }
         }
-        return totalPrice;
+        return totalMarketValue;
     }
     @Override
     public int visit(Item item){
-        totalPrice = item.getMarketValue();
-        return totalPrice;
+        totalMarketValue = item.getMarketValue();
+        return totalMarketValue;
     }
 }
