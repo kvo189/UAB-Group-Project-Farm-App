@@ -11,9 +11,9 @@ public class MarketValueVisitor implements Visitor{
     public int visit(ItemContainer itemContainer){
         Iterator<Component> iterator = itemContainer.getItemComponents().iterator();
         while(iterator.hasNext()){
-            Component currentComponent = (Component)iterator.next();
+            Component currentComponent = iterator.next();
             if(currentComponent instanceof Item){
-                totalPrice += currentComponent.getMarketValue();
+                totalPrice += ((Item) currentComponent).getMarketValue();
             }
         }
         return totalPrice;

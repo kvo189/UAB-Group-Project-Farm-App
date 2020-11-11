@@ -55,4 +55,5 @@ public abstract class Component {
     public abstract void setHeight(int height);
     //accept
     public abstract int accept(Visitor vis);
+
 }

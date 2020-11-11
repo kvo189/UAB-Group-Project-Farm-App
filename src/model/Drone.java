@@ -97,13 +97,16 @@ public class Drone extends Component{
         this.height = height;
     }
 
+    @Override
+    public int accept(Visitor vis) {
+        return 0;
+    }
+
     //how tall is the drone?
     @Override
     public int getHeight(){
         return height;
     }
-
-
 
 
 }

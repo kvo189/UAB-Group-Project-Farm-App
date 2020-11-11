@@ -14,7 +14,7 @@ public class ItemContainer extends Component{
     private int height;
     //ItemContainer has an ArrayList, itemComponents, which contains a collection of items.
     // This is basically ItemContainer's....item container. It's an ArrayList.
-    private ArrayList<Component> itemComponents = new ArrayList<>();
+    private final ArrayList<Component> itemComponents = new ArrayList<>();
 
     //ItemContainer's constructor.
     public ItemContainer (String name,

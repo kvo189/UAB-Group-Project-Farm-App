@@ -10,7 +10,7 @@ public class PurchasePriceVisitor implements Visitor{
     public int visit(ItemContainer itemContainer){
         Iterator<Component> iterator = itemContainer.getItemComponents().iterator();
         while(iterator.hasNext()){
-            Component currentComponent = (Component)iterator.next();
+            Component currentComponent = iterator.next();
             totalPrice += currentComponent.getPrice();
         }
         return totalPrice;
