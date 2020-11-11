@@ -8,6 +8,13 @@ public class MarketValueVisitor implements Visitor{
     public MarketValueVisitor(){
         totalMarketValue = 0;
     }
+
+    @Override
+    public int visit(Item item){
+        marketValue = item.getMarketValue();
+        return marketValue;
+    }
+
     @Override
     public int visit(ItemContainer itemContainer){
         Iterator<Component> iterator = itemContainer.getItemComponents().iterator();
@@ -18,10 +25,5 @@ public class MarketValueVisitor implements Visitor{
             }
         }
         return totalMarketValue;
-    }
-    @Override
-    public int visit(Item item){
-        marketValue = item.getMarketValue();
-        return marketValue;
     }
 }

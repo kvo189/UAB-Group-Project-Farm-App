@@ -61,7 +61,7 @@ public class RootLayoutController {
     private void initialize() {
         ItemContainer farm = new ItemContainer("Farm", 0, 0, 0, 800, 600, 0);
         ItemContainer barn = new ItemContainer("Barn", 1000, 10, 15, 200, 100, 50);
-        Item cow = new Item("Cow", 1000, 30, 35, 20, 20, 50, 1000);
+        Item cow = new Item("Cow", 1000, 30, 35, 20, 20, 50, 1000, 1000);
         barn.addComp(cow);
         farm.addComp(barn);
 
@@ -118,6 +118,13 @@ public class RootLayoutController {
                     marketValueTextField.setText(String.valueOf(cellItem.accept(new MarketValueVisitor())));
                     purchasePriceTextField.setText(String.valueOf(cellItem.accept(new PurchasePriceVisitor())));
 
+                    if (cellItem instanceof ItemContainer){
+                        marketValueTextField.setDisable(true);
+                    }else{
+                        marketValueTextField.setDisable(false);
+                    }
+
+
                 }
             });
 
@@ -151,7 +158,9 @@ public class RootLayoutController {
                 lengthVal = Integer.parseInt(lTextField.getText()),
                 widthVal = Integer.parseInt(wTextField.getText()),
                 heightVal = Integer.parseInt(hTextField.getText()),
-                priceVal = Integer.parseInt(priceTextField.getText());
+                priceVal = Integer.parseInt(priceTextField.getText()),
+                marketVal = Integer.parseInt(marketValueTextField.getText()),
+                purchaseVal = Integer.parseInt(purchasePriceTextField.getText());
 
 
         //if the x or y coordinates are outside the bounds of the root (farm)
@@ -184,6 +193,7 @@ public class RootLayoutController {
         item.setWidth(widthVal);
         item.setHeight(heightVal);
         item.setPrice(priceVal);
+        item.setMarketValue(marketVal);
         visualPane.getChildren().clear();
         drawComponents(treeView.getRoot());
     }
@@ -193,7 +203,7 @@ public class RootLayoutController {
     private void handleAddItem() {
         TreeItem<Component> selectedTreeItem = treeView.getSelectionModel().getSelectedItem();
         if (selectedTreeItem.getValue() instanceof ItemContainer){
-            Item newItem = new Item("ITEM", 0, selectedTreeItem.getValue().getLocationX(), selectedTreeItem.getValue().getLocationY(), 0, 0, 0, 1000);
+            Item newItem = new Item("ITEM", 0, selectedTreeItem.getValue().getLocationX(), selectedTreeItem.getValue().getLocationY(), 0, 0, 0, 0, 0);
             TreeItem<Component> newItemNode = new TreeItem<>(newItem);
             selectedTreeItem.getValue().addComp(newItem);
             selectedTreeItem.getChildren().add(newItemNode);
@@ -300,7 +310,7 @@ public class RootLayoutController {
         }
         TreeItem<Component> selectedTreeItem = treeView.getSelectionModel().getSelectedItem();
         if (selectedTreeItem.getValue() instanceof ItemContainer){
-            drone = new Drone("Drone", 0, selectedTreeItem.getValue().getLocationX(), selectedTreeItem.getValue().getLocationY(), 50, 50, 5);
+            drone = new Drone("Drone", 0, selectedTreeItem.getValue().getLocationX(), selectedTreeItem.getValue().getLocationY(), 50, 50, 5, 1250);
             TreeItem<Component> droneNode = new TreeItem<>(drone);
             selectedTreeItem.getValue().addComp(drone);
             selectedTreeItem.getChildren().add(droneNode);

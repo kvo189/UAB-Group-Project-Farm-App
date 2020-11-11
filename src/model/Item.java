@@ -9,10 +9,12 @@ public class Item extends Component{
     private int length;
     private int width;
     private int height;
+    private int purchasePrice;
     private int marketValue;
 
+
     //Item constructor
-    public Item(String name, int price, int locationX, int locationY, int length, int width, int height, int marketValue){
+    public Item(String name, int price, int locationX, int locationY, int length, int width, int height, int purchasePrice, int marketValue){
         //item params
         super(name);
         this.price = price;
@@ -21,6 +23,7 @@ public class Item extends Component{
         this.length = length;
         this.width = width;
         this.height = height;
+        this.purchasePrice = purchasePrice;
         this.marketValue = marketValue;
     }
 
@@ -110,6 +113,15 @@ public class Item extends Component{
     //Get Market Value
     public int getMarketValue() {
         return marketValue;
+    }
+    //Set Purchase Price
+    public void setPurchasePrice(int purchasePrice){
+        this.purchasePrice = purchasePrice;
+    }
+
+    //Get Purchase Price
+    public int getPurchasePrice() {
+        return purchasePrice;
     }
 
 }
