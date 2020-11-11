@@ -59,12 +59,10 @@ public abstract class Component {
     //accept
     public abstract int accept(Visitor vis);
 
-    //marketValue
+    //marketValue getter/setter
+    //get
     public abstract int getMarketValue();
-    public abstract int getPurchasePrice();
-
-
-    public abstract void setPurchasePrice(int purchaseVal);
-
+    //set
     public abstract void setMarketValue(int marketVal);
+
 }

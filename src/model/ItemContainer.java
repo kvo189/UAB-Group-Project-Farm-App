@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 
 
 //ItemContainer extends component. ItemContainer holds items.
@@ -110,4 +111,15 @@ public class ItemContainer extends Component{
     //accept hook
     @Override
     public int accept(Visitor vis){ return vis.visit(this);}
+
+    @Override
+    public int getMarketValue() {
+        return marketValue;
+    }
+
+    @Override
+    public void setMarketValue(int marketVal) {
+    }
+
+
 }

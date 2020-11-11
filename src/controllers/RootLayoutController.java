@@ -159,8 +159,8 @@ public class RootLayoutController {
                 widthVal = Integer.parseInt(wTextField.getText()),
                 heightVal = Integer.parseInt(hTextField.getText()),
                 priceVal = Integer.parseInt(priceTextField.getText()),
-                marketVal = Integer.parseInt(priceTextField.getText()),
-                purchaseVal = Integer.parseInt(priceTextField.getText());
+                marketVal = Integer.parseInt(marketValueTextField.getText()),
+                purchaseVal = Integer.parseInt(purchasePriceTextField.getText());
 
 
         //if the x or y coordinates are outside the bounds of the root (farm)
@@ -194,7 +194,6 @@ public class RootLayoutController {
         item.setHeight(heightVal);
         item.setPrice(priceVal);
         item.setMarketValue(marketVal);
-        item.setPurchasePrice(purchaseVal);
         visualPane.getChildren().clear();
         drawComponents(treeView.getRoot());
     }
@@ -311,7 +310,7 @@ public class RootLayoutController {
         }
         TreeItem<Component> selectedTreeItem = treeView.getSelectionModel().getSelectedItem();
         if (selectedTreeItem.getValue() instanceof ItemContainer){
-            drone = new Drone("Drone", 0, selectedTreeItem.getValue().getLocationX(), selectedTreeItem.getValue().getLocationY(), 50, 50, 5);
+            drone = new Drone("Drone", 0, selectedTreeItem.getValue().getLocationX(), selectedTreeItem.getValue().getLocationY(), 50, 50, 5, 1250);
             TreeItem<Component> droneNode = new TreeItem<>(drone);
             selectedTreeItem.getValue().addComp(drone);
             selectedTreeItem.getChildren().add(droneNode);

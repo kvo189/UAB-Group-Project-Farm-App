@@ -8,9 +8,10 @@ public class Drone extends Component{
     private int length;
     private int width;
     private int height;
+    private int marketValue;
 
     //drone constructor
-    public Drone(String name, int price, int locationX, int locationY, int length, int width, int height){
+    public Drone(String name, int price, int locationX, int locationY, int length, int width, int height, int marketValue){
         super(name);
         this.price = price;
         this.locationX = locationX;
@@ -18,6 +19,7 @@ public class Drone extends Component{
         this.length = length;
         this.width = width;
         this.height = height;
+        this.marketValue = marketValue;
     }
 
     // Add/Create a new component
@@ -100,6 +102,16 @@ public class Drone extends Component{
     @Override
     public int accept(Visitor vis) {
         return 0;
+    }
+
+    @Override
+    public int getMarketValue() {
+        return marketValue;
+    }
+
+    @Override
+    public void setMarketValue(int marketVal) {
+
     }
 
     //how tall is the drone?
