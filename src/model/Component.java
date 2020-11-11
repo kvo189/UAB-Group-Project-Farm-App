@@ -7,11 +7,7 @@ import javafx.beans.property.StringProperty;
 public abstract class Component {
     private final StringProperty name = new SimpleStringProperty();
 
-    //marketValue
-    public int getMarketValue;
 
-    //purchasePrice
-    public int getPurchasePrice;
 
 
     // this is a component class
@@ -63,4 +59,12 @@ public abstract class Component {
     //accept
     public abstract int accept(Visitor vis);
 
+    //marketValue
+    public abstract int getMarketValue();
+    public abstract int getPurchasePrice();
+
+
+    public abstract void setPurchasePrice(int purchaseVal);
+
+    public abstract void setMarketValue(int marketVal);
 }
