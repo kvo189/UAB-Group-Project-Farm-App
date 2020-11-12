@@ -8,6 +8,7 @@ public class PurchasePriceVisitor implements Visitor{
     }
     @Override
     public int visit(ItemContainer itemContainer){
+        totalPrice = itemContainer.getPrice();
         Iterator<Component> iterator = itemContainer.getItemComponents().iterator();
         while(iterator.hasNext()){
             Component currentComponent = iterator.next();
