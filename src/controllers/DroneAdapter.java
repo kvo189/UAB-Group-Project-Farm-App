@@ -22,12 +22,6 @@ public class DroneAdapter implements SimulateDrone {
         this.convertPxToCm = Constants.CENTIMETERS_PER_MODEL_FOOT/Constants.PIXELS_TO_ONE_MODEL_FOOT;
     }
 
-    /*
-        default void setup(PathElement[] path, int speed, boolean deleteOnFinish) {
-
-        }
-    */
-
     public void scanFarm(Node droneGraphic,double droneX, double droneY, double droneW, double droneL) {
         int farmHeight = Constants.MODELHEIGHT * 30;
         int farmWidth = Constants.MODELWIDTH * 30;
@@ -85,11 +79,4 @@ public class DroneAdapter implements SimulateDrone {
             System.out.println(ex.toString());
         }
     }
-/*
-    public void deleteDrone(ImageView drone){
-
-    }
-
- */
-
 }
