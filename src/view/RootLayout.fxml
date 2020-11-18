@@ -4,11 +4,12 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -20,7 +21,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="900.0" minWidth="1200.0" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="900.0" minWidth="1200.0" prefHeight="900.0" prefWidth="1200.0" type="BorderPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <Menu mnemonicParsing="false" text="File">
@@ -134,15 +135,24 @@
                    </Label>
                    <ButtonBar layoutX="53.0" layoutY="37.0" prefHeight="40.0" prefWidth="386.0">
                        <buttons>
-                           <Button mnemonicParsing="false" onAction="#handleScheduleVisit" prefHeight="27.0" prefWidth="188.0" text="Visit Selected Item" />
-                           <Button mnemonicParsing="false" onAction="#handleVisitScan" text="Scan Farm" />
-                           <Button mnemonicParsing="false"  onAction="#handleLaunchDrone" prefHeight="27.0" text="Launch Drone" />
+                           <Button fx:id="visitItemBtn" mnemonicParsing="false" onAction="#handleScheduleVisit" prefHeight="27.0" prefWidth="188.0" text="Visit Selected Item" />
+                           <Button fx:id="scanFarmBtn" mnemonicParsing="false" onAction="#handleSchduleScanFarm" text="Scan Farm" />
+                           <Button fx:id="launchDroneBtn" mnemonicParsing="false" onAction="#handleLaunchDrone" prefHeight="27.0" text="Launch Drone" />
                        </buttons>
                        <padding>
                            <Insets right="10.0" />
                        </padding>
                    </ButtonBar>
-               <ListView id="droneCommandsList" fx:id="droneListView" layoutX="72.0" layoutY="92.0" prefHeight="200.0" prefWidth="356.0" style="-fx-background-color: #ABCDEF;" />
+               <TableView fx:id="droneCommandTableView" layoutX="5.0" layoutY="102.0" prefHeight="200.0" prefWidth="494.0">
+                 <columns>
+                   <TableColumn fx:id="commandColumn" prefWidth="75.0" text="Command" />
+                   <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Asset Name" />
+                     <TableColumn fx:id="targetXColumn" prefWidth="75.0" text="Location X" />
+                     <TableColumn fx:id="targetYColumn" prefWidth="75.0" text="Location Y" />
+                     <TableColumn fx:id="targetZColumn" prefWidth="75.0" text="Location Z" />
+                     <TableColumn fx:id="targetInfoColumn" prefWidth="118.0" text="Task Status/ Info" />
+                 </columns>
+               </TableView>
                </AnchorPane>
            </SplitPane>
        </AnchorPane>
@@ -150,4 +160,4 @@
    <center>
       <AnchorPane fx:id="visualPane" maxHeight="800.0" maxWidth="600.0" minHeight="800.0" minWidth="600.0" prefHeight="800.0" prefWidth="600.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER" />
    </center>
-</BorderPane>
+</fx:root>

@@ -7,15 +7,21 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import model.DroneTarget;
 
 import java.io.IOException;
+
+
 
 
 public class MainApp extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
 
-    private ObservableList<String> droneObjectiveList = FXCollections.observableArrayList();
+
+    private ObservableList<DroneTarget> droneTargetList = FXCollections.observableArrayList();
+
+
 
 
     @Override
@@ -24,9 +30,6 @@ public class MainApp extends Application {
         initRootLayout();
     }
 
-    public ObservableList<String> getDroneObjective() {
-        return droneObjectiveList;
-    }
 
 
     /**
@@ -51,8 +54,16 @@ public class MainApp extends Application {
         }
     }
 
+    public ObservableList<DroneTarget> getDroneTargetList() {
+        return droneTargetList;
+    }
+
+
     public static void main(String[] args) {
         launch(args);
-
     }
+
+
+
+
 }

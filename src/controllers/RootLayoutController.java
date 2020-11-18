@@ -47,13 +47,44 @@ public class RootLayoutController {
 
     //populates listview
 
+
+    ////////DRONE COMMAND STUFF//////
+
+
+    /////The whole table
     @FXML
-    //goes in GUI and shows content of above
-    public TableView<DroneTarget> droneTargetTableView = new TableView<DroneTarget>();
+    private TableView<DroneTarget> droneTargetTableView;
+    ///````````````````````````````````
+    //`````````` Table columns
+
+    //name of target
+    @FXML
+    private TableColumn<DroneTarget, String> droneTargetNameTableColumn;
+
+    //command given
+    @FXML
+    private TableColumn<DroneTarget, String> droneTargetObjectiveTableColumn;
+
+    // x
+    @FXML
+    private TableColumn<DroneTarget, Integer> droneXTableColumn;
+
+    //y
+    @FXML
+    private TableColumn<DroneTarget, Integer> droneYTableColumn;
+
+    //z
+    @FXML
+    private TableColumn<DroneTarget, Integer> droneZTableColumn;
+
+    //info/status of command
+    @FXML
+    private TableColumn<DroneTarget, Integer> droneTargetInfoTableColumn;
+    
 
     @FXML
     public ObservableList<DroneTarget> droneTargetList = FXCollections.observableArrayList();
-
+    ///////////////////////////////////////
 
 
 
@@ -349,8 +380,10 @@ public class RootLayoutController {
     }
 
 
+
+    //ADD COMMAND TO QUEUE OF DRONE'S COMMANDS IT HAS RECEIVED / FLIGHT DESTINATIONS
     @FXML
-    private void handleAddVisitObjective() {
+    private void handleScheduleVisit() {
         if (drone == null) {
             showErrorDialog("Invalid Operation", null, "\"Visit Item/Item Containers\" can only be performed when a drone component exists!");
             return;
@@ -371,17 +404,12 @@ public class RootLayoutController {
 
         droneTargetList.add(newTarget);
 
-
-
-
-
-
-
-
     }
 
+    //ADD COMMAND TO QUEUE OF DRONE'S COMMANDS IT HAS RECEIVED / FLIGHT DESTINATIONS
+
     @FXML
-    private void handleAddScanFarmObjective() {
+    private void handleScheduleScanFarm() {
 
         //TODO -- determine offset for Z AXIS / HEIGHT FOR DRONE TO OPERATE SAFELY
         int altitudeOffset = 125;
@@ -399,7 +427,11 @@ public class RootLayoutController {
             return;
         }
         DroneTarget newTarget = new DroneTarget(newTargetName, newObjective, newTargetX,
-                newTargetY, newTargetZ, newTargetInfo);     }
+                newTargetY, newTargetZ, newTargetInfo);
+    }
+
+
+    //THIS IS THE ACTUAL EXECUTION OF THE DRONE'S FLIGHT TO AN ITEM ONCE IT HAS REACHED THE ITEM IN ITS QUEUE
 
     // Have the drone fly to an item and back.
     @FXML
