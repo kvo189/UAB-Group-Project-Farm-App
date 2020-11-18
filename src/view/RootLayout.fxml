@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="900.0" minWidth="1200.0" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="900.0" minWidth="1200.0" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <top>
         <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
             <Menu mnemonicParsing="false" text="File">
@@ -112,34 +127,34 @@
                    </VBox>
                </AnchorPane>
                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="309.0" prefWidth="508.0" style="-fx-background-color: #292929;">
-                   <Label fx:id="droneActionLabel" layoutX="189.0" layoutY="14.0" text="Drone Actions" textFill="WHITE">
+                   <Label fx:id="droneActionLabel" layoutX="189.0" text="Drone Actions" textFill="WHITE">
                        <font>
                            <Font name="System Bold" size="22.0" />
                        </font>
                    </Label>
-                   <ButtonBar layoutX="22.0" layoutY="92.0" prefHeight="89.0" prefWidth="444.0">
+                   <ButtonBar fx:id="btnBar" layoutX="22.0" layoutY="92.0" prefHeight="89.0" prefWidth="444.0">
                        <buttons>
                            <Button fx:id="launchSimulatorBtn" mnemonicParsing="false" onAction="#handleSimulator" prefHeight="60.0" prefWidth="234.0" text="Launch Simulator" />
-                           <Button fx:id="buttonBar" mnemonicParsing="false" onAction="#handleLaunch" prefHeight="58.0" prefWidth="245.0" text="Launch Drone" />
+                           <Button fx:id="launchDroneBtn" mnemonicParsing="false" onAction="#handleLaunch" prefHeight="58.0" prefWidth="245.0" text="Launch Drone" />
                        </buttons>
                        <padding>
                            <Insets right="10.0" />
                        </padding>
                    </ButtonBar>
-               <ButtonBar fx:id="radioButtonBar" layoutX="54.0" layoutY="42.0" prefHeight="40.0" prefWidth="401.0">
-                  <buttons>
+               <HBox fx:id="radioBtnGroup" layoutX="84.0" layoutY="43.0" prefHeight="40.0" prefWidth="382.0">
+                  <children>
                      <RadioButton fx:id="selectScanFarmRadioBtn" mnemonicParsing="false" prefHeight="18.0" prefWidth="181.0" text="Scan Farm" textFill="#eeeeee">
                         <font>
                            <Font size="18.0" />
                         </font>
                      </RadioButton>
-                     <RadioButton fx:id="selectVisitItemRadioBtn" mnemonicParsing="false" text="Visit Selected Item" textFill="#eeeeee">
+                     <RadioButton fx:id="selectVisitItemRadioBtn" mnemonicParsing="false" prefHeight="24.0" prefWidth="178.0" text="Visit Selected Item" textFill="#eeeeee">
                         <font>
                            <Font size="18.0" />
                         </font>
                      </RadioButton>
-                  </buttons>
-               </ButtonBar>
+                  </children>
+               </HBox>
                </AnchorPane>
            </SplitPane>
        </AnchorPane>
