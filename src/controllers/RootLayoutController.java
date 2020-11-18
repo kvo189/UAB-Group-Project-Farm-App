@@ -47,6 +47,10 @@ public class RootLayoutController {
     //This is drone.png, which is our depiction of our drone flying around.
     private final Image dronePng = new Image("drone.png");
 
+
+
+
+
     //Singleton pattern setup for RootLayoutController
     /**
      * Initializes an instance of the controller if one has not been created.
@@ -68,8 +72,8 @@ public class RootLayoutController {
         ItemContainer farm = new ItemContainer("Farm", 0, 0, 0, 800, 600, 0);
         ItemContainer building1 = new ItemContainer("building-1", 5000, 10, 15, 200, 100, 50);
         ItemContainer room1 = new ItemContainer("room-1", 3000, 15, 20, 50, 50, 40);
-        Item cattle1 = new Item("cattle-1", 500, 20, 25, 10, 10, 5, 500);
-        Item equipment1 = new Item("equipment-1", 500, 50, 150, 10, 10, 5, 400);
+        Item cattle1 = new Item("cattle-1", 500, 20, 25, 10, 10, 10, 5, 500);
+        Item equipment1 = new Item("equipment-1", 500, 50, 150, 10, 10,10, 5, 400);
 
         building1.addComp(room1);
         room1.addComp(cattle1);
@@ -214,7 +218,7 @@ public class RootLayoutController {
     private void handleAddItem() {
         TreeItem<Component> selectedTreeItem = treeView.getSelectionModel().getSelectedItem();
         if (selectedTreeItem.getValue() instanceof ItemContainer){
-            Item newItem = new Item("ITEM", 0, selectedTreeItem.getValue().getLocationX(), selectedTreeItem.getValue().getLocationY(), 0, 0, 0, 0);
+            Item newItem = new Item("ITEM", 0, selectedTreeItem.getValue().getLocationX(), selectedTreeItem.getValue().getLocationY(),0, 0, 0, 0, 0);
             TreeItem<Component> newItemNode = new TreeItem<>(newItem);
             selectedTreeItem.getValue().addComp(newItem);
             selectedTreeItem.getChildren().add(newItemNode);
@@ -333,6 +337,39 @@ public class RootLayoutController {
     }
 
     // Have the drone fly to an item and back.
+
+
+    @FXML
+    private void handleSelectScanFarm(){
+
+        }
+
+
+    @FXML
+    private void handleSelectVisitItem(){
+
+        }
+
+    @FXML
+    private void handleLaunchDrone( String selectedObjective ) {
+        if (selectedObjective == "Visit Item"){
+            handleVisitItem();
+        }
+        if (selectedObjective == "Scan Farm"){
+            handleScanFarm();
+        }
+    }
+
+    private void handleLaunchSimulator( String selectedObjective ) {
+        if (selectedObjective == "Visit Item"){
+            handleVisitItem();
+        }
+        if (selectedObjective == "Scan Farm"){
+            handleScanFarm();
+        }
+    }
+
+
     @FXML
     private void handleVisitItem () {
         if (drone == null) {
