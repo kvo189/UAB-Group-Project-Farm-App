@@ -1,8 +1,8 @@
 package controllers;
 
-import javafx.animation.PathTransition;
-import javafx.animation.TranslateTransition;
+import javafx.animation.*;
 import javafx.fxml.FXML;
+import javafx.geometry.Point2D;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -11,15 +11,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.*;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-
-
+import model.*;
 import model.Component;
-import model.Drone;
-import model.Item;
-import model.ItemContainer;
 
+import java.awt.*;
+import java.io.IOException;
+import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.util.function.UnaryOperator;
 
 public class RootLayoutController {
@@ -30,7 +31,7 @@ public class RootLayoutController {
     private TreeView<Component> treeView;
     //declare our text fields
     @FXML
-    private TextField nameTextField, xTextField, yTextField, lTextField, wTextField, hTextField, priceTextField;
+    private TextField nameTextField, xTextField, yTextField, lTextField, wTextField, hTextField, priceTextField, marketValueTextField, purchasePriceTextField;
     //Save Button
     @FXML
     private Button saveBtn;
@@ -65,30 +66,34 @@ public class RootLayoutController {
     @FXML
     private void initialize() {
         ItemContainer farm = new ItemContainer("Farm", 0, 0, 0, 800, 600, 0);
-        ItemContainer barn = new ItemContainer("Barn", 1000, 10, 15, 200, 100, 50);
-        Item cow = new Item("Cow", 1000, 30, 30, 35, 20, 20, 50, 1000);
-        barn.addComp(cow);
-        farm.addComp(barn);
+        ItemContainer building1 = new ItemContainer("building-1", 5000, 10, 15, 200, 100, 50);
+        ItemContainer room1 = new ItemContainer("room-1", 3000, 15, 20, 50, 50, 40);
+        Item cattle1 = new Item("cattle-1", 500, 20, 25, 10, 10, 5, 500);
+        Item equipment1 = new Item("equipment-1", 500, 50, 150, 10, 10, 5, 400);
+
+        building1.addComp(room1);
+        room1.addComp(cattle1);
+        building1.addComp(equipment1);
+        farm.addComp(building1);
 
         TreeItem<Component> rootNode = new TreeItem<>(farm);
-        TreeItem<Component> barnNode = new TreeItem<>(barn);
-        TreeItem<Component> cowNode = new TreeItem<>(cow);
-
-
-
+        TreeItem<Component> buildingNode = new TreeItem<>(building1);
+        TreeItem<Component> roomNode = new TreeItem<>(room1);
+        TreeItem<Component> cattleNode = new TreeItem<>(cattle1);
+        TreeItem<Component> equipmentNode = new TreeItem<>(equipment1);
 
         treeView.setRoot(rootNode);
         treeView.getSelectionModel().selectFirst();
         rootNode.setExpanded(true);
-        barnNode.setExpanded(true);
+        buildingNode.setExpanded(true);
+        roomNode.setExpanded(true);
 
-        barnNode.getChildren().add(cowNode);
-        rootNode.getChildren().add(barnNode);
+        buildingNode.getChildren().add(roomNode);
+        roomNode.getChildren().add(cattleNode);
+        buildingNode.getChildren().add(equipmentNode);
+        rootNode.getChildren().add(buildingNode);
 
         drawComponents(rootNode);
-
-
-
 
         //This is used to create the cells in our tree.
         treeView.setCellFactory(tv ->{
@@ -120,6 +125,16 @@ public class RootLayoutController {
                     wTextField.setText(String.valueOf(cellItem.getWidth()));
                     hTextField.setText(String.valueOf(cellItem.getHeight()));
                     priceTextField.setText(String.valueOf(cellItem.getPrice()));
+                    marketValueTextField.setText(String.valueOf(cellItem.accept(new MarketValueVisitor())));
+                    purchasePriceTextField.setText(String.valueOf(cellItem.accept(new PurchasePriceVisitor())));
+
+                    if (cellItem instanceof ItemContainer){
+                        marketValueTextField.setDisable(true);
+                    }else{
+                        marketValueTextField.setDisable(false);
+                    }
+
+
                 }
             });
 
@@ -153,8 +168,8 @@ public class RootLayoutController {
                 lengthVal = Integer.parseInt(lTextField.getText()),
                 widthVal = Integer.parseInt(wTextField.getText()),
                 heightVal = Integer.parseInt(hTextField.getText()),
-                priceVal = Integer.parseInt(priceTextField.getText());
-
+                priceVal = Integer.parseInt(priceTextField.getText()),
+                marketVal = Integer.parseInt(marketValueTextField.getText());
 
         //if the x or y coordinates are outside the bounds of the root (farm)
         int rootLength = treeView.getRoot().getValue().getLength();
@@ -186,6 +201,10 @@ public class RootLayoutController {
         item.setWidth(widthVal);
         item.setHeight(heightVal);
         item.setPrice(priceVal);
+        purchasePriceTextField.setText(String.valueOf(item.getPrice()));
+        if (item instanceof Item){
+            item.setMarketValue(marketVal);
+        }
         visualPane.getChildren().clear();
         drawComponents(treeView.getRoot());
     }
@@ -195,7 +214,7 @@ public class RootLayoutController {
     private void handleAddItem() {
         TreeItem<Component> selectedTreeItem = treeView.getSelectionModel().getSelectedItem();
         if (selectedTreeItem.getValue() instanceof ItemContainer){
-            Item newItem = new Item("ITEM", 0, selectedTreeItem.getValue().getLocationX(), selectedTreeItem.getValue().getLocationY(), ((ItemContainer) selectedTreeItem.getValue()).getHeight(), 0, 0, 0, 1000);
+            Item newItem = new Item("ITEM", 0, selectedTreeItem.getValue().getLocationX(), selectedTreeItem.getValue().getLocationY(), 0, 0, 0, 0);
             TreeItem<Component> newItemNode = new TreeItem<>(newItem);
             selectedTreeItem.getValue().addComp(newItem);
             selectedTreeItem.getChildren().add(newItemNode);
@@ -280,8 +299,6 @@ public class RootLayoutController {
 
 
 
-
-
         path.getElements().add(new LineTo(droneW, droneL));
 
         PathTransition pathTransition = new PathTransition();
@@ -295,17 +312,7 @@ public class RootLayoutController {
         pathTransition.play();
     }
 
-    //TODO COMPLETE THIS
-    @FXML
-    public void handleSimulator(){}
-
-    //TODO COMPLETE THIS
-    @FXML
-    public void handleLaunch(){}
     // Add a new drone to the farm.
-
-
-
     @FXML
     private void handleAddDrone () {
         if (drone != null){
@@ -314,7 +321,7 @@ public class RootLayoutController {
         }
         TreeItem<Component> selectedTreeItem = treeView.getSelectionModel().getSelectedItem();
         if (selectedTreeItem.getValue() instanceof ItemContainer){
-            drone = new Drone("Drone", 0, selectedTreeItem.getValue().getLocationX(), selectedTreeItem.getValue().getLocationY(), ((ItemContainer) selectedTreeItem.getValue()).getHeight(), 50, 50, 5);
+            drone = new Drone("Drone", 0, selectedTreeItem.getValue().getLocationX(), selectedTreeItem.getValue().getLocationY(), 50, 50, 5, 1250);
             TreeItem<Component> droneNode = new TreeItem<>(drone);
             selectedTreeItem.getValue().addComp(drone);
             selectedTreeItem.getChildren().add(droneNode);
@@ -332,32 +339,36 @@ public class RootLayoutController {
             showErrorDialog("Invalid Operation", null, "\"Visit Item/Item Containers\" can only be performed when a drone component exists!");
             return;
         }
+//        MultiRotorDrone droneAdapter = new DroneAdapter(droneGraphic);
         TreeItem<Component> selectedTreeItem = treeView.getSelectionModel().getSelectedItem();
         int droneX = drone.getLocationX() + drone.getWidth()/2;
         int droneY = drone.getLocationY() + drone.getLength()/2;
         int targetX = selectedTreeItem.getValue().getLocationX() + selectedTreeItem.getValue().getWidth()/2;
         int targetY = selectedTreeItem.getValue().getLocationY() + selectedTreeItem.getValue().getLength()/2;
-        int toX = -(droneX - targetX);
-        int toY = -(droneY - targetY);
-        int droneToTargetDistance = (int) Math.sqrt((targetY - droneY) * (targetY - droneY) + (targetX - droneX) * (targetX - droneX));
-        int travelTime = droneToTargetDistance / 30;
-        //Instantiating TranslateTransition class
-        TranslateTransition translate = new TranslateTransition();
-        //shifting the X and Y coordinates to designation
-        translate.setFromX(0);
-        translate.setFromY(0);
-        translate.setToX(toX);
-        translate.setToY(toY);
-        //setting the duration for the Translate transition
-        translate.setDuration(Duration.millis(1000));
-        //setting cycle count for the Translate transition
-        translate.setCycleCount(2);
-        //the transition will set to be auto reversed by setting this to true
-        translate.setAutoReverse(true);
-        //setting drone graphic as the node onto which the transition will be applied
-        translate.setNode(droneGraphic);
-        //playing the transition
-        translate.play();
+
+        SimulationDrone drone = new SimulationDrone();
+        try {
+            TelloDrone drone1 = new TelloDrone();
+        } catch (SocketException e) {
+            e.printStackTrace();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+        MultiRotorDrone droneAdapter = new DroneAdapter(drone);
+        try {
+            droneAdapter.hoverInPlace(5);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        drone.flytoLocation(droneGraphic,new Point(droneX,droneY), new Point(targetX,targetY));
+    }
+
+    public float getAngle(Point target, float x, float y) {
+        float angle = (float) Math.toDegrees(Math.atan2(-(target.y - y),(target.x - x)));
+
+        return angle;
     }
 
     //draw a new component's rectangular outline for display on the dashboard overview.
