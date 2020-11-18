@@ -21,7 +21,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="900.0" minWidth="1200.0" prefHeight="900.0" prefWidth="1200.0" type="BorderPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="900.0" minWidth="1200.0" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <Menu mnemonicParsing="false" text="File">
@@ -35,129 +35,128 @@
             </Menu>
         </MenuBar>
     </top>
-   <left>
-       <AnchorPane minWidth="400.0" prefHeight="872.0" prefWidth="510.0" BorderPane.alignment="CENTER">
-           <SplitPane dividerPositions="0.5543415756181713" orientation="VERTICAL" prefHeight="575.0" prefWidth="385.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="562.0" prefWidth="448.0" style="-fx-background-color: #111111;">
-                   <Label layoutX="56.0" layoutY="14.0" text="Farm Assets" textFill="#eeeeee" AnchorPane.leftAnchor="56.0" AnchorPane.topAnchor="14.0" />
-                   <TreeView fx:id="treeView" layoutX="16.0" layoutY="33.0" prefHeight="293.0" prefWidth="153.0" />
-                   <Button fx:id="saveBtn" layoutX="266.0" layoutY="244.0" minWidth="46.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="25.0" prefWidth="65.0" text="Save" />
-                   <GridPane layoutX="180.0" layoutY="46.0" prefHeight="191.0" prefWidth="302.0">
-                       <columnConstraints>
-                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="154.0" minWidth="10.0" prefWidth="154.0" />
-                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="105.0" />
-                       </columnConstraints>
-                       <rowConstraints>
-                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                       </rowConstraints>
-                       <TextField fx:id="nameTextField" prefHeight="27.0" prefWidth="150.0" GridPane.columnIndex="1">
-                     <padding>
-                        <Insets bottom="2.0" />
-                     </padding>
-                     <GridPane.margin>
-                        <Insets bottom="5.0" />
-                     </GridPane.margin></TextField>
-                       <HBox prefHeight="34.0" prefWidth="148.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                           <TextField prefHeight="0.0" prefWidth="72.0" fx:id="xTextField">
-                               <HBox.margin>
-                                   <Insets left="2.0" />
-                               </HBox.margin>
-                           </TextField>
-                           <TextField fx:id="yTextField" prefHeight="27.0" prefWidth="72.0">
-                               <HBox.margin>
-                                   <Insets left="2.0" />
-                               </HBox.margin>
+    <left>
+        <AnchorPane minWidth="400.0" prefHeight="872.0" prefWidth="510.0" BorderPane.alignment="CENTER">
+            <SplitPane dividerPositions="0.5543415756181713" orientation="VERTICAL" prefHeight="575.0" prefWidth="385.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="562.0" prefWidth="448.0" style="-fx-background-color: #111111;">
+                    <Label layoutX="56.0" layoutY="14.0" text="Farm Assets" textFill="#eeeeee" AnchorPane.leftAnchor="56.0" AnchorPane.topAnchor="14.0" />
+                    <TreeView fx:id="treeView" layoutX="16.0" layoutY="33.0" prefHeight="293.0" prefWidth="153.0" />
+                    <Button fx:id="saveBtn" layoutX="266.0" layoutY="244.0" minWidth="46.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="25.0" prefWidth="65.0" text="Save" />
+                    <GridPane layoutX="180.0" layoutY="46.0" prefHeight="191.0" prefWidth="302.0">
+                        <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="154.0" minWidth="10.0" prefWidth="154.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="105.0" />
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        </rowConstraints>
+                        <TextField fx:id="nameTextField" prefHeight="27.0" prefWidth="150.0" GridPane.columnIndex="1">
+                            <padding>
+                                <Insets bottom="2.0" />
+                            </padding>
+                            <GridPane.margin>
+                                <Insets bottom="5.0" />
+                            </GridPane.margin></TextField>
+                        <HBox prefHeight="34.0" prefWidth="148.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                            <TextField prefHeight="0.0" prefWidth="72.0" fx:id="xTextField">
+                                <HBox.margin>
+                                    <Insets left="2.0" />
+                                </HBox.margin>
+                            </TextField>
+                            <TextField fx:id="yTextField" prefHeight="27.0" prefWidth="72.0">
+                                <HBox.margin>
+                                    <Insets left="2.0" />
+                                </HBox.margin>
+                                <padding>
+                                    <Insets top="5.0" />
+                                </padding>
+                            </TextField>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                            <TextField fx:id="lTextField" prefHeight="25.0" prefWidth="48.0">
+                                <HBox.margin>
+                                    <Insets right="5.0" />
+                                </HBox.margin>
+                            </TextField>
+                            <TextField fx:id="wTextField" prefHeight="25.0" prefWidth="48.0">
+                                <HBox.margin>
+                                    <Insets right="5.0" />
+                                </HBox.margin>
+                            </TextField>
+                            <TextField fx:id="hTextField" prefHeight="25.0" prefWidth="48.0">
+                                <HBox.margin>
+                                    <Insets />
+                                </HBox.margin>
+                            </TextField>
+                        </HBox>
+                        <TextField fx:id="priceTextField" prefHeight="25.0" prefWidth="120.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label text="Name:" textFill="#eeeeee" />
+                        <Label text="Position (X,Y):" textFill="#eeeeee" GridPane.rowIndex="1" />
+                        <Label text="Size (L,W,H):" textFill="#eeeeee" GridPane.rowIndex="2" />
+                        <Label text="Market Value" textFill="#eeeeee" GridPane.rowIndex="5" />
+                        <TextField fx:id="marketValueTextField" prefHeight="95.0" prefWidth="176.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                            <GridPane.margin>
+                                <Insets bottom="2.0" top="2.0" />
+                            </GridPane.margin>
+                        </TextField>
+                        <Label fx:id="purchasePriceLabel" text="Purchase Price" textFill="#eeeeee" GridPane.rowIndex="4" />
+                        <TextField fx:id="purchasePriceTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                    </GridPane>
+                    <VBox layoutX="11.0" layoutY="340.0" prefHeight="115.0" prefWidth="157.0">
+                        <Button mnemonicParsing="false" onAction="#handleAddDrone" prefHeight="25.0" prefWidth="155.0" text="+ Add Drone">
+                            <VBox.margin>
+                                <Insets bottom="5.0" />
+                            </VBox.margin>
+                        </Button>
+                        <Button fx:id="addItemBtn" mnemonicParsing="false" onAction="#handleAddItem" prefHeight="25.0" prefWidth="155.0" text="+ Add Item">
+                            <VBox.margin>
+                                <Insets bottom="5.0" />
+                            </VBox.margin>
+                        </Button>
+                        <Button fx:id="addItemContainerBtn" mnemonicParsing="false" onAction="#handleAddItemContainer" prefHeight="25.0" prefWidth="154.0" text="+ Add Item Container">
+                            <VBox.margin>
+                                <Insets bottom="5.0" />
+                            </VBox.margin>
+                        </Button>
+                        <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#handleDelete" prefHeight="25.0" prefWidth="154.0" text="- Delete Selected" />
+                    </VBox>
+                </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="398.0" style="-fx-background-color: #292929;">
+                    <Label layoutX="185.0" layoutY="14.0" text="Drone Commands" textFill="WHITE">
+                        <font>
+                            <Font name="System Bold" size="18.0" />
+                        </font>
+                    </Label>
+                    <ButtonBar layoutX="53.0" layoutY="37.0" prefHeight="40.0" prefWidth="386.0">
+                        <buttons>
+                            <Button fx:id="visitBtn" mnemonicParsing="false" onAction="#handleScheduleVisit" prefHeight="27.0" prefWidth="188.0" text="Visit Asset" />
+                            <Button fx:id="scanFarmBtn" mnemonicParsing="false" onAction="#handleScheduleScanFarm" text="Scan Farm" />
+                            <Button fx:id="launchDroneBtn" mnemonicParsing="false" onAction="#handleLaunchDrone" prefHeight="27.0" text="Launch Drone" />
+                        </buttons>
                         <padding>
-                           <Insets top="5.0" />
+                            <Insets right="10.0" />
                         </padding>
-                           </TextField>
-                       </HBox>
-                       <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                           <TextField fx:id="lTextField" prefHeight="25.0" prefWidth="48.0">
-                               <HBox.margin>
-                                   <Insets right="5.0" />
-                               </HBox.margin>
-                           </TextField>
-                           <TextField fx:id="wTextField" prefHeight="25.0" prefWidth="48.0">
-                               <HBox.margin>
-                                   <Insets right="5.0" />
-                               </HBox.margin>
-                           </TextField>
-                           <TextField fx:id="hTextField" prefHeight="25.0" prefWidth="48.0">
-                               <HBox.margin>
-                                   <Insets />
-                               </HBox.margin>
-                           </TextField>
-                       </HBox>
-                       <TextField fx:id="priceTextField" prefHeight="25.0" prefWidth="120.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                       <Label text="Name:" textFill="#eeeeee" />
-                       <Label text="Position (X,Y):" textFill="#eeeeee" GridPane.rowIndex="1" />
-                       <Label text="Size (L,W,H):" textFill="#eeeeee" GridPane.rowIndex="2" />
-                       <Label fx:id="pricetextField" text="Price:" textFill="#eeeeee" GridPane.rowIndex="3" />
-                  <Label text="Market Value" textFill="#eeeeee" GridPane.rowIndex="5" />
-                  <TextField fx:id="marketValueTextField" prefHeight="95.0" prefWidth="176.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                     <GridPane.margin>
-                        <Insets bottom="2.0" top="2.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <Label fx:id="purchasePriceLabel" text="Purchase Price" textFill="#eeeeee" GridPane.rowIndex="4" />
-                  <TextField fx:id="purchasePriceTextField" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                   </GridPane>
-                   <VBox layoutX="11.0" layoutY="340.0" prefHeight="115.0" prefWidth="157.0">
-                       <Button mnemonicParsing="false" onAction="#handleAddDrone" prefHeight="25.0" prefWidth="155.0" text="+ Add Drone">
-                           <VBox.margin>
-                               <Insets bottom="5.0" />
-                           </VBox.margin>
-                       </Button>
-                       <Button fx:id="addItemBtn" mnemonicParsing="false" onAction="#handleAddItem" prefHeight="25.0" prefWidth="155.0" text="+ Add Item">
-                           <VBox.margin>
-                               <Insets bottom="5.0" />
-                           </VBox.margin>
-                       </Button>
-                       <Button fx:id="addItemContainerBtn" mnemonicParsing="false" onAction="#handleAddItemContainer" prefHeight="25.0" prefWidth="154.0" text="+ Add Item Container">
-                           <VBox.margin>
-                               <Insets bottom="5.0" />
-                           </VBox.margin>
-                       </Button>
-                       <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#handleDelete" prefHeight="25.0" prefWidth="154.0" text="- Delete Selected" />
-                   </VBox>
-               </AnchorPane>
-               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="398.0" style="-fx-background-color: #292929;">
-                   <Label layoutX="185.0" layoutY="14.0" text="Drone Commands" textFill="WHITE">
-                       <font>
-                           <Font name="System Bold" size="18.0" />
-                       </font>
-                   </Label>
-                   <ButtonBar layoutX="53.0" layoutY="37.0" prefHeight="40.0" prefWidth="386.0">
-                       <buttons>
-                           <Button fx:id="visitItemBtn" mnemonicParsing="false" onAction="#handleScheduleVisit" prefHeight="27.0" prefWidth="188.0" text="Visit Selected Item" />
-                           <Button fx:id="scanFarmBtn" mnemonicParsing="false" onAction="#handleSchduleScanFarm" text="Scan Farm" />
-                           <Button fx:id="launchDroneBtn" mnemonicParsing="false" onAction="#handleLaunchDrone" prefHeight="27.0" text="Launch Drone" />
-                       </buttons>
-                       <padding>
-                           <Insets right="10.0" />
-                       </padding>
-                   </ButtonBar>
-               <TableView fx:id="droneCommandTableView" layoutX="5.0" layoutY="102.0" prefHeight="200.0" prefWidth="494.0">
-                 <columns>
-                   <TableColumn fx:id="commandColumn" prefWidth="75.0" text="Command" />
-                   <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Asset Name" />
-                     <TableColumn fx:id="targetXColumn" prefWidth="75.0" text="Location X" />
-                     <TableColumn fx:id="targetYColumn" prefWidth="75.0" text="Location Y" />
-                     <TableColumn fx:id="targetZColumn" prefWidth="75.0" text="Location Z" />
-                     <TableColumn fx:id="targetInfoColumn" prefWidth="118.0" text="Task Status/ Info" />
-                 </columns>
-               </TableView>
-               </AnchorPane>
-           </SplitPane>
-       </AnchorPane>
-   </left>
-   <center>
-      <AnchorPane fx:id="visualPane" maxHeight="800.0" maxWidth="600.0" minHeight="800.0" minWidth="600.0" prefHeight="800.0" prefWidth="600.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER" />
-   </center>
-</fx:root>
+                    </ButtonBar>
+                 <TableView fx:id="droneTargetTableView" layoutY="80.0" prefHeight="250.0" prefWidth="494.0">
+                     <columns>
+                         <TableColumn fx:id="commandColumn" prefWidth="75.0" text="Command" />
+                         <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Asset Name" />
+                         <TableColumn fx:id="targetXColumn" prefWidth="75.0" text="Location X" />
+                         <TableColumn fx:id="targetYColumn" prefWidth="75.0" text="Location Y" />
+                         <TableColumn fx:id="targetZColumn" prefWidth="75.0" text="Location Z" />
+                         <TableColumn fx:id="targetInfoColumn" prefWidth="118.0" text="Task Status/ Info" />
+                     </columns>
+                 </TableView>
+                </AnchorPane>
+            </SplitPane>
+        </AnchorPane>
+    </left>
+    <center>
+        <AnchorPane fx:id="visualPane" maxHeight="800.0" maxWidth="600.0" minHeight="800.0" minWidth="600.0" prefHeight="800.0" prefWidth="600.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER" />
+    </center>
+</BorderPane>

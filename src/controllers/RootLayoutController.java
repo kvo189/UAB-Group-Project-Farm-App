@@ -2,12 +2,16 @@ package controllers;
 
 import javafx.animation.PathTransition;
 import javafx.animation.TranslateTransition;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.Property;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -53,37 +57,43 @@ public class RootLayoutController {
 
     /////The whole table
     @FXML
-    private TableView<DroneTarget> droneTargetTableView;
+    private TableView<DroneTarget> droneTargetTable;
     ///````````````````````````````````
     //`````````` Table columns
 
     //name of target
     @FXML
-    private TableColumn<DroneTarget, String> droneTargetNameTableColumn;
+    public TableColumn<DroneTarget, StringProperty> targetNameTableColumn;
 
     //command given
     @FXML
-    private TableColumn<DroneTarget, String> droneTargetObjectiveTableColumn;
+    public TableColumn<DroneTarget, StringProperty> targetObjectiveTableColumn;
 
     // x
     @FXML
-    private TableColumn<DroneTarget, Integer> droneXTableColumn;
+    public TableColumn<DroneTarget, IntegerProperty> targetXTableColumn;
 
     //y
     @FXML
-    private TableColumn<DroneTarget, Integer> droneYTableColumn;
+    public TableColumn<DroneTarget, IntegerProperty> targetYTableColumn;
 
     //z
     @FXML
-    private TableColumn<DroneTarget, Integer> droneZTableColumn;
+    public TableColumn<DroneTarget, IntegerProperty> targetZTableColumn;
 
     //info/status of command
     @FXML
-    private TableColumn<DroneTarget, Integer> droneTargetInfoTableColumn;
+    public TableColumn<DroneTarget, IntegerProperty> targetInfoTableColumn;
     
 
-    @FXML
-    public ObservableList<DroneTarget> droneTargetList = FXCollections.observableArrayList();
+
+
+
+
+
+
+
+
     ///////////////////////////////////////
 
 
@@ -107,6 +117,7 @@ public class RootLayoutController {
      */
     @FXML
     private void initialize() {
+
         ItemContainer farm = new ItemContainer("Farm", 0, 0, 0, 800, 600, 0);
         ItemContainer building1 = new ItemContainer("building-1", 5000, 10, 15, 200, 100, 50);
         ItemContainer room1 = new ItemContainer("room-1", 3000, 15, 20, 50, 50, 40);
@@ -123,6 +134,7 @@ public class RootLayoutController {
         TreeItem<Component> roomNode = new TreeItem<>(room1);
         TreeItem<Component> cattleNode = new TreeItem<>(cattle1);
         TreeItem<Component> equipmentNode = new TreeItem<>(equipment1);
+
 
 
 
@@ -158,6 +170,10 @@ public class RootLayoutController {
                     }
                 }
             };
+
+
+
+
 
 
             // cell selected? If so...
@@ -205,6 +221,19 @@ public class RootLayoutController {
         wTextField.setTextFormatter(new TextFormatter<>(filter));
         hTextField.setTextFormatter(new TextFormatter<>(filter));
         priceTextField.setTextFormatter(new TextFormatter<>(filter));
+
+
+
+
+
+        targetTableView.getColumns().add(targetNameTableColumn);
+        targetTableView.getColumns().add(targetObjectiveTableColumn);
+        targetTableView.getColumns().add(targetXTableColumn);
+        targetTableView.getColumns().add(targetYTableColumn);
+        targetTableView.getColumns().add(targetZTableColumn);
+        targetTableView.getColumns().add(targetInfoTableColumn);
+
+
     }
 
     //Save objects after setting their values.
@@ -402,7 +431,6 @@ public class RootLayoutController {
         DroneTarget newTarget = new DroneTarget(newTargetName, newObjective, newTargetX,
                                                 newTargetY, newTargetZ, newTargetInfo);
 
-        droneTargetList.add(newTarget);
 
     }
 
@@ -428,6 +456,13 @@ public class RootLayoutController {
         }
         DroneTarget newTarget = new DroneTarget(newTargetName, newObjective, newTargetX,
                 newTargetY, newTargetZ, newTargetInfo);
+    }
+
+
+    @FXML
+    public void handleLaunchDrone(){
+
+
     }
 
 
