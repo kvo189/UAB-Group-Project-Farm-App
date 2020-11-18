@@ -2,8 +2,6 @@ package controllers;
 
 import javafx.animation.PathTransition;
 import javafx.animation.TranslateTransition;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -15,7 +13,12 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.*;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import model.*;
+
+
+import model.Component;
+import model.Drone;
+import model.Item;
+import model.ItemContainer;
 
 import java.util.function.UnaryOperator;
 
@@ -27,7 +30,7 @@ public class RootLayoutController {
     private TreeView<Component> treeView;
     //declare our text fields
     @FXML
-    private TextField nameTextField, xTextField, yTextField, lTextField, wTextField, hTextField, priceTextField, marketValueTextField, purchasePriceTextField;
+    private TextField nameTextField, xTextField, yTextField, lTextField, wTextField, hTextField, priceTextField;
     //Save Button
     @FXML
     private Button saveBtn;
@@ -42,21 +45,6 @@ public class RootLayoutController {
     private RootLayoutController() {}
     //This is drone.png, which is our depiction of our drone flying around.
     private final Image dronePng = new Image("drone.png");
-
-    //List of Tasks drone is scheduled to conduct on its next launch
-
-    //populates listview
-
-    @FXML
-    //goes in GUI and shows content of above
-    public TableView<DroneTarget> droneTargetTableView = new TableView<DroneTarget>();
-
-    @FXML
-    public ObservableList<DroneTarget> droneTargetList = FXCollections.observableArrayList();
-
-
-
-
 
     //Singleton pattern setup for RootLayoutController
     /**
@@ -77,23 +65,14 @@ public class RootLayoutController {
     @FXML
     private void initialize() {
         ItemContainer farm = new ItemContainer("Farm", 0, 0, 0, 800, 600, 0);
-        ItemContainer building1 = new ItemContainer("building-1", 5000, 10, 15, 200, 100, 50);
-        ItemContainer room1 = new ItemContainer("room-1", 3000, 15, 20, 50, 50, 40);
-        Item cattle1 = new Item("cattle-1", 500, 20, 25, 30, 10, 10, 5, 500);
-        Item equipment1 = new Item("equipment-1", 500, 50, 150, 10, 10, 10, 5, 400);
-
-        building1.addComp(room1);
-        room1.addComp(cattle1);
-        building1.addComp(equipment1);
-        farm.addComp(building1);
+        ItemContainer barn = new ItemContainer("Barn", 1000, 10, 15, 200, 100, 50);
+        Item cow = new Item("Cow", 1000, 30, 30, 35, 20, 20, 50, 1000);
+        barn.addComp(cow);
+        farm.addComp(barn);
 
         TreeItem<Component> rootNode = new TreeItem<>(farm);
-        TreeItem<Component> buildingNode = new TreeItem<>(building1);
-        TreeItem<Component> roomNode = new TreeItem<>(room1);
-        TreeItem<Component> cattleNode = new TreeItem<>(cattle1);
-        TreeItem<Component> equipmentNode = new TreeItem<>(equipment1);
-
-
+        TreeItem<Component> barnNode = new TreeItem<>(barn);
+        TreeItem<Component> cowNode = new TreeItem<>(cow);
 
 
 
@@ -101,15 +80,15 @@ public class RootLayoutController {
         treeView.setRoot(rootNode);
         treeView.getSelectionModel().selectFirst();
         rootNode.setExpanded(true);
-        buildingNode.setExpanded(true);
-        roomNode.setExpanded(true);
+        barnNode.setExpanded(true);
 
-        buildingNode.getChildren().add(roomNode);
-        roomNode.getChildren().add(cattleNode);
-        buildingNode.getChildren().add(equipmentNode);
-        rootNode.getChildren().add(buildingNode);
+        barnNode.getChildren().add(cowNode);
+        rootNode.getChildren().add(barnNode);
 
         drawComponents(rootNode);
+
+
+
 
         //This is used to create the cells in our tree.
         treeView.setCellFactory(tv ->{
@@ -141,16 +120,6 @@ public class RootLayoutController {
                     wTextField.setText(String.valueOf(cellItem.getWidth()));
                     hTextField.setText(String.valueOf(cellItem.getHeight()));
                     priceTextField.setText(String.valueOf(cellItem.getPrice()));
-                    marketValueTextField.setText(String.valueOf(cellItem.accept(new MarketValueVisitor())));
-                    purchasePriceTextField.setText(String.valueOf(cellItem.accept(new PurchasePriceVisitor())));
-
-                    if (cellItem instanceof ItemContainer){
-                        marketValueTextField.setDisable(true);
-                    }else{
-                        marketValueTextField.setDisable(false);
-                    }
-
-
                 }
             });
 
@@ -184,8 +153,8 @@ public class RootLayoutController {
                 lengthVal = Integer.parseInt(lTextField.getText()),
                 widthVal = Integer.parseInt(wTextField.getText()),
                 heightVal = Integer.parseInt(hTextField.getText()),
-                priceVal = Integer.parseInt(priceTextField.getText()),
-                marketVal = Integer.parseInt(marketValueTextField.getText());
+                priceVal = Integer.parseInt(priceTextField.getText());
+
 
         //if the x or y coordinates are outside the bounds of the root (farm)
         int rootLength = treeView.getRoot().getValue().getLength();
@@ -217,8 +186,6 @@ public class RootLayoutController {
         item.setWidth(widthVal);
         item.setHeight(heightVal);
         item.setPrice(priceVal);
-        purchasePriceTextField.setText(String.valueOf(item.getPrice()));
-        item.setMarketValue(marketVal);
         visualPane.getChildren().clear();
         drawComponents(treeView.getRoot());
     }
@@ -228,7 +195,7 @@ public class RootLayoutController {
     private void handleAddItem() {
         TreeItem<Component> selectedTreeItem = treeView.getSelectionModel().getSelectedItem();
         if (selectedTreeItem.getValue() instanceof ItemContainer){
-            Item newItem = new Item("ITEM", 0, selectedTreeItem.getValue().getLocationX(), selectedTreeItem.getValue().getLocationY(), 0, 0, 0, 0, 0);
+            Item newItem = new Item("ITEM", 0, selectedTreeItem.getValue().getLocationX(), selectedTreeItem.getValue().getLocationY(), ((ItemContainer) selectedTreeItem.getValue()).getHeight(), 0, 0, 0, 1000);
             TreeItem<Component> newItemNode = new TreeItem<>(newItem);
             selectedTreeItem.getValue().addComp(newItem);
             selectedTreeItem.getChildren().add(newItemNode);
@@ -259,9 +226,7 @@ public class RootLayoutController {
     // Delete a Component
     @FXML
     private void handleDelete() {
-
         TreeItem<Component> selectedTreeItem = treeView.getSelectionModel().getSelectedItem();
-
         if (!(selectedTreeItem.getParent() == null)) {
             //if delete is performed on drone, then set the instance variables to null
             if (selectedTreeItem.getValue() instanceof Drone){
@@ -315,6 +280,8 @@ public class RootLayoutController {
 
 
 
+
+
         path.getElements().add(new LineTo(droneW, droneL));
 
         PathTransition pathTransition = new PathTransition();
@@ -328,7 +295,17 @@ public class RootLayoutController {
         pathTransition.play();
     }
 
+    //TODO COMPLETE THIS
+    @FXML
+    public void handleSimulator(){}
+
+    //TODO COMPLETE THIS
+    @FXML
+    public void handleLaunch(){}
     // Add a new drone to the farm.
+
+
+
     @FXML
     private void handleAddDrone () {
         if (drone != null){
@@ -337,7 +314,7 @@ public class RootLayoutController {
         }
         TreeItem<Component> selectedTreeItem = treeView.getSelectionModel().getSelectedItem();
         if (selectedTreeItem.getValue() instanceof ItemContainer){
-            drone = new Drone("Drone", 0, selectedTreeItem.getValue().getLocationX(), selectedTreeItem.getValue().getLocationY(), 50, 50, 5, 1250);
+            drone = new Drone("Drone", 0, selectedTreeItem.getValue().getLocationX(), selectedTreeItem.getValue().getLocationY(), ((ItemContainer) selectedTreeItem.getValue()).getHeight(), 50, 50, 5);
             TreeItem<Component> droneNode = new TreeItem<>(drone);
             selectedTreeItem.getValue().addComp(drone);
             selectedTreeItem.getChildren().add(droneNode);
@@ -348,64 +325,6 @@ public class RootLayoutController {
         }
     }
 
-
-    @FXML
-    private void handleAddVisitObjective() {
-        if (drone == null) {
-            showErrorDialog("Invalid Operation", null, "\"Visit Item/Item Containers\" can only be performed when a drone component exists!");
-            return;
-        }
-
-        //TODO -- determine offset for Z AXIS / HEIGHT FOR DRONE TO OPERATE SAFELY
-        int altitudeOffset = 125;
-
-        String newObjective = "Visit";
-        String newTargetName = treeView.getSelectionModel().getSelectedItem().getValue().getName();
-        int newTargetX = treeView.getSelectionModel().getSelectedItem().getValue().getLocationX();
-        int newTargetY = treeView.getSelectionModel().getSelectedItem().getValue().getLocationY();
-        int newTargetZ  = treeView.getSelectionModel().getSelectedItem().getValue().getHeight() + altitudeOffset;
-        String newTargetInfo = "Drone visit scheduled.";
-
-        DroneTarget newTarget = new DroneTarget(newTargetName, newObjective, newTargetX,
-                                                newTargetY, newTargetZ, newTargetInfo);
-
-        droneTargetList.add(newTarget);
-    }
-
-
-
-    @FXML
-    private void handleLaunchDrone(){
-
-
-    }
-
-
-
-
-
-
-    @FXML
-    private void handleAddScanFarmObjective() {
-
-        //TODO -- determine offset for Z AXIS / HEIGHT FOR DRONE TO OPERATE SAFELY
-        int altitudeOffset = 125;
-
-        String newObjective = "Visit";
-        String newTargetName = treeView.getSelectionModel().getSelectedItem().getValue().getName();
-        int newTargetX = treeView.getSelectionModel().getSelectedItem().getValue().getLocationX();
-        int newTargetY = treeView.getSelectionModel().getSelectedItem().getValue().getLocationY();
-        int newTargetZ  = treeView.getSelectionModel().getSelectedItem().getValue().getHeight() + altitudeOffset;
-        String newTargetInfo = "Drone scan of farm scheduled.";
-
-
-        if (drone == null) {
-            showErrorDialog("Invalid Operation", null, "\"Visit Item/Item Containers\" can only be performed when a drone component exists!");
-            return;
-        }
-        DroneTarget newTarget = new DroneTarget(newTargetName, newObjective, newTargetX,
-                newTargetY, newTargetZ, newTargetInfo);     }
-
     // Have the drone fly to an item and back.
     @FXML
     private void handleVisitItem () {
@@ -413,9 +332,6 @@ public class RootLayoutController {
             showErrorDialog("Invalid Operation", null, "\"Visit Item/Item Containers\" can only be performed when a drone component exists!");
             return;
         }
-
-
-
         TreeItem<Component> selectedTreeItem = treeView.getSelectionModel().getSelectedItem();
         int droneX = drone.getLocationX() + drone.getWidth()/2;
         int droneY = drone.getLocationY() + drone.getLength()/2;

@@ -15,7 +15,6 @@ public class MainApp extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
 
-    private ObservableList<String> droneObjectiveList = FXCollections.observableArrayList();
 
 
     @Override
@@ -24,9 +23,6 @@ public class MainApp extends Application {
         initRootLayout();
     }
 
-    public ObservableList<String> getDroneObjective() {
-        return droneObjectiveList;
-    }
 
 
     /**
