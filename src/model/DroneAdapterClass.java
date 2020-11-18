@@ -71,7 +71,6 @@ public class DroneAdapterClass extends MultiRotorDrone {
      * @throws IOException
      */
     public void land() throws IOException {
-
     }
 
     /***
@@ -144,6 +143,8 @@ public class DroneAdapterClass extends MultiRotorDrone {
      */
     public int getFlightTime() throws IOException{
 
+        return 0;
+
     }
 
     /***
@@ -152,6 +153,8 @@ public class DroneAdapterClass extends MultiRotorDrone {
      * @throws IOException
      */
     public int getHeight() throws IOException{
+
+        return 0;
 
     }
 
@@ -162,6 +165,8 @@ public class DroneAdapterClass extends MultiRotorDrone {
      */
     public int getAttitudePitch() throws IOException{
 
+        return 0;
+
     }
 
     /***
@@ -171,6 +176,8 @@ public class DroneAdapterClass extends MultiRotorDrone {
      */
     public int getAttitudeRoll() throws IOException{
 
+        return 0;
+
     }
 
     /***
@@ -179,7 +186,7 @@ public class DroneAdapterClass extends MultiRotorDrone {
      * @throws IOException
      */
     public int getAttitudeYaw() throws IOException{
-
+        return 0;
     }
 
     /***
@@ -188,7 +195,7 @@ public class DroneAdapterClass extends MultiRotorDrone {
      * @throws IOException
      */
     public double getAccelerationX() throws IOException{
-
+        return 0;
     }
 
     /***
@@ -197,7 +204,7 @@ public class DroneAdapterClass extends MultiRotorDrone {
      * @throws IOException
      */
     public double getAccelerationY() throws IOException{
-
+        return 0;
     }
 
     /***
@@ -206,7 +213,7 @@ public class DroneAdapterClass extends MultiRotorDrone {
      * @throws IOException
      */
     public double getAccelerationZ() throws IOException{
-
+        return 0;
     }
 
     /***
@@ -215,7 +222,7 @@ public class DroneAdapterClass extends MultiRotorDrone {
      * @throws IOException
      */
     public int getTOF() throws IOException{
-
+        return 0;
     }
 
 }
