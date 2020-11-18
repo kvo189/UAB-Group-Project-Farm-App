@@ -49,10 +49,10 @@ public class RootLayoutController {
 
     @FXML
     //goes in GUI and shows content of above
-    public ListView<String> droneListView = new ListView<String>();
+    public TableView<DroneTarget> droneTargetTableView = new TableView<DroneTarget>();
 
     @FXML
-    public ObservableList<String> droneObjectives = FXCollections.observableArrayList();
+    public ObservableList<DroneTarget> droneTargetList = FXCollections.observableArrayList();
 
 
 
@@ -261,12 +261,6 @@ public class RootLayoutController {
     private void handleDelete() {
 
         TreeItem<Component> selectedTreeItem = treeView.getSelectionModel().getSelectedItem();
-        String selectedTreeItemName = treeView.getSelectionModel().getSelectedItem().getValue().getName();
-        String selectedItemVisitString = "Visit "+selectedTreeItemName;
-        if (droneObjectives.contains(selectedItemVisitString)){
-            droneObjectives.remove(selectedItemVisitString);
-        }
-
 
         if (!(selectedTreeItem.getParent() == null)) {
             //if delete is performed on drone, then set the instance variables to null
@@ -286,11 +280,6 @@ public class RootLayoutController {
     //Have the drone scan the farm, row by row.
     @FXML
     private void handleScanFarm () {
-
-
-        droneObjectives.add("Scan Farm");
-
-
 
         //track the dimensions of root container to use for calculating time of drone flight
         //int rootLength and rootWidth are the length and width of farm
@@ -367,19 +356,50 @@ public class RootLayoutController {
             return;
         }
 
-            String selectedTreeItemName = treeView.getSelectionModel().getSelectedItem().getValue().getName();
-            String selectedItemVisitString = "Visit " + selectedTreeItemName;
-            droneObjectives.add(selectedItemVisitString);
+        //TODO -- determine offset for Z AXIS / HEIGHT FOR DRONE TO OPERATE SAFELY
+        int altitudeOffset = 125;
+
+        String newObjective = "Visit";
+        String newTargetName = treeView.getSelectionModel().getSelectedItem().getValue().getName();
+        int newTargetX = treeView.getSelectionModel().getSelectedItem().getValue().getLocationX();
+        int newTargetY = treeView.getSelectionModel().getSelectedItem().getValue().getLocationY();
+        int newTargetZ  = treeView.getSelectionModel().getSelectedItem().getValue().getHeight() + altitudeOffset;
+        String newTargetInfo = "Drone visit scheduled.";
+
+        DroneTarget newTarget = new DroneTarget(newTargetName, newObjective, newTargetX,
+                                                newTargetY, newTargetZ, newTargetInfo);
+
+        droneTargetList.add(newTarget);
+
+
+
+
+
+
+
+
     }
 
     @FXML
     private void handleAddScanFarmObjective() {
+
+        //TODO -- determine offset for Z AXIS / HEIGHT FOR DRONE TO OPERATE SAFELY
+        int altitudeOffset = 125;
+
+        String newObjective = "Visit";
+        String newTargetName = treeView.getSelectionModel().getSelectedItem().getValue().getName();
+        int newTargetX = treeView.getSelectionModel().getSelectedItem().getValue().getLocationX();
+        int newTargetY = treeView.getSelectionModel().getSelectedItem().getValue().getLocationY();
+        int newTargetZ  = treeView.getSelectionModel().getSelectedItem().getValue().getHeight() + altitudeOffset;
+        String newTargetInfo = "Drone scan of farm scheduled.";
+
+
         if (drone == null) {
             showErrorDialog("Invalid Operation", null, "\"Visit Item/Item Containers\" can only be performed when a drone component exists!");
             return;
         }
-        droneObjectives.add("Scan Farm");
-    }
+        DroneTarget newTarget = new DroneTarget(newTargetName, newObjective, newTargetX,
+                newTargetY, newTargetZ, newTargetInfo);     }
 
     // Have the drone fly to an item and back.
     @FXML

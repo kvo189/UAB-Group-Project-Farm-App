@@ -134,9 +134,9 @@
                    </Label>
                    <ButtonBar layoutX="53.0" layoutY="37.0" prefHeight="40.0" prefWidth="386.0">
                        <buttons>
-                           <Button mnemonicParsing="false" onAction="#handleVisitItem" prefHeight="27.0" prefWidth="188.0" text="Visit Asset" />
-                           <Button mnemonicParsing="false" onAction="#handleScanFarm" text="Scan Farm" />
-                     <Button mnemonicParsing="false" prefHeight="27.0" text="Launch Drone" />
+                           <Button mnemonicParsing="false" onAction="#handleScheduleVisit" prefHeight="27.0" prefWidth="188.0" text="Visit Selected Item" />
+                           <Button mnemonicParsing="false" onAction="#handleVisitScan" text="Scan Farm" />
+                           <Button mnemonicParsing="false"  onAction="#handleLaunchDrone" prefHeight="27.0" text="Launch Drone" />
                        </buttons>
                        <padding>
                            <Insets right="10.0" />
