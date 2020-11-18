@@ -22,10 +22,11 @@ public class DroneAdapterClass extends MultiRotorDrone {
      * @param direction
      * @throws IOException
      */
+    /*
     public void flip(String direction) throws IOException {
 
     }
-
+    */
     /***
      *
      * @param seconds
