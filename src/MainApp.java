@@ -1,5 +1,7 @@
 import controllers.RootLayoutController;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -13,18 +15,26 @@ public class MainApp extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
 
+    private ObservableList<String> droneObjectiveList = FXCollections.observableArrayList();
+
+
     @Override
     public void start(Stage primaryStage){
         this.primaryStage = primaryStage;
         initRootLayout();
     }
+
+    public ObservableList<String> getDroneObjective() {
+        return droneObjectiveList;
+    }
+
+
     /**
      * Initializes the root layout.
      */
     public void initRootLayout() {
         try {
             RootLayoutController rootLayoutController = RootLayoutController.getInstance();
-
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
             loader.setController(rootLayoutController);
@@ -43,5 +53,6 @@ public class MainApp extends Application {
 
     public static void main(String[] args) {
         launch(args);
+
     }
 }

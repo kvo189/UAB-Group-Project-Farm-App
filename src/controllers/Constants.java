@@ -12,7 +12,7 @@ public class Constants {
 		
 	public static final int FARMWIDTH = 800; // farm width on screen in pixels 4:3 ratio
 	public static final int FARMHEIGHT = 600; // farm height on screen in pixels 4:3 ratio
-	public static final int FARMDEPTH = 0;
+	public static final int FARMDEPTH = 0; // is this the Z axis? if so, set to = highest item on farm
 	
 	public static final int MODELWIDTH = 32; // farm width physical model in feet 4:3 ratio
 	public static final int MODELHEIGHT = 24; // farm height physical model in feet 4:3 ratio

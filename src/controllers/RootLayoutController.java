@@ -2,6 +2,8 @@ package controllers;
 
 import javafx.animation.PathTransition;
 import javafx.animation.TranslateTransition;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -41,6 +43,21 @@ public class RootLayoutController {
     //This is drone.png, which is our depiction of our drone flying around.
     private final Image dronePng = new Image("drone.png");
 
+    //List of Tasks drone is scheduled to conduct on its next launch
+
+    //populates listview
+
+    @FXML
+    //goes in GUI and shows content of above
+    public ListView<String> droneListView = new ListView<String>();
+
+    @FXML
+    public ObservableList<String> droneObjectives = FXCollections.observableArrayList();
+
+
+
+
+
     //Singleton pattern setup for RootLayoutController
     /**
      * Initializes an instance of the controller if one has not been created.
@@ -68,6 +85,11 @@ public class RootLayoutController {
         TreeItem<Component> rootNode = new TreeItem<>(farm);
         TreeItem<Component> barnNode = new TreeItem<>(barn);
         TreeItem<Component> cowNode = new TreeItem<>(cow);
+
+
+
+
+
 
 
 
@@ -234,7 +256,15 @@ public class RootLayoutController {
     // Delete a Component
     @FXML
     private void handleDelete() {
+
         TreeItem<Component> selectedTreeItem = treeView.getSelectionModel().getSelectedItem();
+        String selectedTreeItemName = treeView.getSelectionModel().getSelectedItem().getValue().getName();
+        String selectedItemVisitString = "Visit "+selectedTreeItemName;
+        if (droneObjectives.contains(selectedItemVisitString)){
+            droneObjectives.remove(selectedItemVisitString);
+        }
+
+
         if (!(selectedTreeItem.getParent() == null)) {
             //if delete is performed on drone, then set the instance variables to null
             if (selectedTreeItem.getValue() instanceof Drone){
@@ -253,6 +283,11 @@ public class RootLayoutController {
     //Have the drone scan the farm, row by row.
     @FXML
     private void handleScanFarm () {
+
+
+        droneObjectives.add("Scan Farm");
+
+
 
         //track the dimensions of root container to use for calculating time of drone flight
         //int rootLength and rootWidth are the length and width of farm
@@ -321,6 +356,28 @@ public class RootLayoutController {
         }
     }
 
+
+    @FXML
+    private void handleAddVisitObjective() {
+        if (drone == null) {
+            showErrorDialog("Invalid Operation", null, "\"Visit Item/Item Containers\" can only be performed when a drone component exists!");
+            return;
+        }
+
+            String selectedTreeItemName = treeView.getSelectionModel().getSelectedItem().getValue().getName();
+            String selectedItemVisitString = "Visit " + selectedTreeItemName;
+            droneObjectives.add(selectedItemVisitString);
+    }
+
+    @FXML
+    private void handleAddScanFarmObjective() {
+        if (drone == null) {
+            showErrorDialog("Invalid Operation", null, "\"Visit Item/Item Containers\" can only be performed when a drone component exists!");
+            return;
+        }
+        droneObjectives.add("Scan Farm");
+    }
+
     // Have the drone fly to an item and back.
     @FXML
     private void handleVisitItem () {
@@ -328,6 +385,9 @@ public class RootLayoutController {
             showErrorDialog("Invalid Operation", null, "\"Visit Item/Item Containers\" can only be performed when a drone component exists!");
             return;
         }
+
+
+
         TreeItem<Component> selectedTreeItem = treeView.getSelectionModel().getSelectedItem();
         int droneX = drone.getLocationX() + drone.getWidth()/2;
         int droneY = drone.getLocationY() + drone.getLength()/2;
