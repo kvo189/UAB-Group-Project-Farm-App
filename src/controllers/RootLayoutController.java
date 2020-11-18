@@ -267,49 +267,18 @@ public class RootLayoutController {
 
         //track the dimensions of root container to use for calculating time of drone flight
         //int rootLength and rootWidth are the length and width of farm
-        int rootLength = treeView.getRoot().getValue().getLength();
-        int rootWidth = treeView.getRoot().getValue().getWidth();
-
         if (drone == null || droneGraphic == null) {
             showErrorDialog("Invalid Operation", null, "\"Scan farm\" can only be performed when a drone component exists!");
             return;
         }
+
         int droneX = drone.getLocationX();
         int droneY = drone.getLocationY();
         double droneW = (double)drone.getWidth()/2;
         double droneL = (double)drone.getLength()/2;
 
-        Path path = new Path();
-
-        double droneSpeed = 30;
-
-
-        path.getElements().add(new MoveTo(droneW,droneL));
-        path.getElements().add(new LineTo(-droneX + droneW, -droneY ));
-        path.getElements().add(new VLineTo(rootLength - droneL - droneY));
-        path.getElements().add(new HLineTo(droneW - droneX + droneW));
-        path.getElements().add(new VLineTo(- droneY + droneL));
-
-        for (int i = 100; i < rootWidth; i+=100) {
-            path.getElements().add(new HLineTo(i - droneX + droneW));
-            path.getElements().add(new VLineTo(rootLength -droneL - droneY));
-            path.getElements().add(new HLineTo(i+droneW - droneX + droneW));
-            path.getElements().add(new VLineTo(- droneY + droneL));
-        }
-
-
-
-        path.getElements().add(new LineTo(droneW, droneL));
-
-        PathTransition pathTransition = new PathTransition();
-
-
-        pathTransition.setDuration(Duration.millis(rootLength*(rootWidth/droneW)/(droneSpeed/droneL)));
-        pathTransition.setPath(path);
-        pathTransition.setNode(droneGraphic);
-        pathTransition.setCycleCount(1);
-        pathTransition.setAutoReverse(true);
-        pathTransition.play();
+        SimulationDrone drone = new SimulationDrone();
+        drone.scanFarm(droneGraphic, droneX, droneY, droneW, droneL);
     }
 
     // Add a new drone to the farm.
@@ -347,21 +316,8 @@ public class RootLayoutController {
         int targetY = selectedTreeItem.getValue().getLocationY() + selectedTreeItem.getValue().getLength()/2;
 
         SimulationDrone drone = new SimulationDrone();
-        try {
-            TelloDrone drone1 = new TelloDrone();
-        } catch (SocketException e) {
-            e.printStackTrace();
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
-        MultiRotorDrone droneAdapter = new DroneAdapter(drone);
-        try {
-            droneAdapter.hoverInPlace(5);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+
         drone.flytoLocation(droneGraphic,new Point(droneX,droneY), new Point(targetX,targetY));
     }
 
