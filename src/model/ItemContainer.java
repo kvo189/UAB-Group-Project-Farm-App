@@ -11,8 +11,6 @@ public class ItemContainer extends Component{
     private int length;
     private int width;
     private int height;
-    private int marketValue;
-    private int purchasePrice;
     //ItemContainer has an ArrayList, itemComponents, which contains a collection of items.
     // This is basically ItemContainer's....item container. It's an ArrayList.
     private final ArrayList<Component> itemComponents = new ArrayList<>();
@@ -113,11 +111,12 @@ public class ItemContainer extends Component{
 
     @Override
     public int getMarketValue() {
-        return marketValue;
+        throw new ClassCastException();
     }
 
     @Override
     public void setMarketValue(int marketVal) {
+        throw new ClassCastException();
     }
 
 
