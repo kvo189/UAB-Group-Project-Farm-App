@@ -114,7 +114,15 @@ public class Item extends Component{
     public int getMarketValue() {
         return marketValue;
     }
+    //Set Purchase Price
+    public void setPurchasePrice(int purchasePrice){
+        this.purchasePrice = purchasePrice;
+    }
 
+    //Get Purchase Price
+    public int getPurchasePrice() {
+        return purchasePrice;
+    }
 
 }
 

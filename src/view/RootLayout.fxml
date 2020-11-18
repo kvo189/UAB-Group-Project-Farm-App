@@ -105,7 +105,7 @@
                      </GridPane.margin>
                   </TextField>
                   <Label fx:id="purchasePriceLabel" text="Purchase Price" textFill="#eeeeee" GridPane.rowIndex="4" />
-                  <TextField fx:id="purchasePriceTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="purchasePriceTextField" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                    </GridPane>
                    <VBox layoutX="11.0" layoutY="340.0" prefHeight="115.0" prefWidth="157.0">
                        <Button mnemonicParsing="false" onAction="#handleAddDrone" prefHeight="25.0" prefWidth="155.0" text="+ Add Drone">

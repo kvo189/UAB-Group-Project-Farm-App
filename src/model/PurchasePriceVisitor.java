@@ -12,7 +12,7 @@ public class PurchasePriceVisitor implements Visitor{
         Iterator<Component> iterator = itemContainer.getItemComponents().iterator();
         while(iterator.hasNext()){
             Component currentComponent = iterator.next();
-            totalPrice += currentComponent.getPrice();
+            totalPrice += currentComponent.accept(new PurchasePriceVisitor());
         }
         return totalPrice;
     }
