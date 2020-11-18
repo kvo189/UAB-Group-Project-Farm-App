@@ -10,7 +10,7 @@ public interface SimulateDrone {
     default void setup(PathElement[] path, int speed, boolean deleteOnFinish) {
 
     }
-    public void hover(int seconds);
+    public void setHoverDuration(int seconds);
 
     public void scanFarm(int speed);
 

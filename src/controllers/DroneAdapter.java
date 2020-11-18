@@ -23,8 +23,8 @@ public class DroneAdapter extends MultiRotorDrone {
     }
 
     @Override
-    public void hoverInPlace(int seconds) throws InterruptedException, IOException {
-        simulateDrone.hover(seconds);
+    public void hoverInPlace(int seconds){
+        simulateDrone.setHoverDuration(seconds);
     }
 
     @Override

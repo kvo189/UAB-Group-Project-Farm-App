@@ -18,6 +18,9 @@ import model.*;
 import model.Component;
 
 import java.awt.*;
+import java.io.IOException;
+import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.util.function.UnaryOperator;
 
 public class RootLayoutController {
@@ -344,6 +347,21 @@ public class RootLayoutController {
         int targetY = selectedTreeItem.getValue().getLocationY() + selectedTreeItem.getValue().getLength()/2;
 
         SimulationDrone drone = new SimulationDrone();
+        try {
+            TelloDrone drone1 = new TelloDrone();
+        } catch (SocketException e) {
+            e.printStackTrace();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+        MultiRotorDrone droneAdapter = new DroneAdapter(drone);
+        try {
+            droneAdapter.hoverInPlace(5);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         drone.flytoLocation(droneGraphic,new Point(droneX,droneY), new Point(targetX,targetY));
     }
 

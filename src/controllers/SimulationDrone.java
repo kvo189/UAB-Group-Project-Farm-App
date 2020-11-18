@@ -11,6 +11,8 @@ import javafx.util.Duration;
 import java.awt.*;
 
 public class SimulationDrone implements SimulateDrone {
+    private int hoverDuration;
+
     SimulationDrone(){
 
     }
@@ -65,7 +67,7 @@ public class SimulationDrone implements SimulateDrone {
 
         seq.getChildren().add(rt);
         seq.getChildren().add(translate);
-        seq.getChildren().add(new PauseTransition(Duration.seconds(0.0)));
+        seq.getChildren().add(new PauseTransition(Duration.seconds(hoverDuration)));
         seq.getChildren().add(rt1);
         seq.getChildren().add(translate1);
         seq.getChildren().add(rt2);
@@ -77,8 +79,8 @@ public class SimulationDrone implements SimulateDrone {
 
     }
 
-    public void hover(int seconds){
-
+    public void setHoverDuration(int seconds){
+        hoverDuration = seconds;
     }
 
     public float getAngle(Point target, float x, float y) {
