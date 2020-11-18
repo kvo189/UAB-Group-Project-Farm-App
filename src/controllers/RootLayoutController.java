@@ -370,15 +370,20 @@ public class RootLayoutController {
                                                 newTargetY, newTargetZ, newTargetInfo);
 
         droneTargetList.add(newTarget);
+    }
 
 
 
-
-
-
+    @FXML
+    private void handleLaunchDrone(){
 
 
     }
+
+
+
+
+
 
     @FXML
     private void handleAddScanFarmObjective() {
