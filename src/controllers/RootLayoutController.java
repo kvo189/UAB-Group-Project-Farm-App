@@ -1,8 +1,8 @@
 package controllers;
 
-import javafx.animation.PathTransition;
-import javafx.animation.TranslateTransition;
+import javafx.animation.*;
 import javafx.fxml.FXML;
+import javafx.geometry.Point2D;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -11,10 +11,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.*;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import model.*;
+import model.Component;
 
+import java.awt.*;
+import java.io.IOException;
+import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.util.function.UnaryOperator;
 
 public class RootLayoutController {
@@ -196,7 +202,9 @@ public class RootLayoutController {
         item.setHeight(heightVal);
         item.setPrice(priceVal);
         purchasePriceTextField.setText(String.valueOf(item.getPrice()));
-        item.setMarketValue(marketVal);
+        if (item instanceof Item){
+            item.setMarketValue(marketVal);
+        }
         visualPane.getChildren().clear();
         drawComponents(treeView.getRoot());
     }
@@ -331,32 +339,36 @@ public class RootLayoutController {
             showErrorDialog("Invalid Operation", null, "\"Visit Item/Item Containers\" can only be performed when a drone component exists!");
             return;
         }
+//        MultiRotorDrone droneAdapter = new DroneAdapter(droneGraphic);
         TreeItem<Component> selectedTreeItem = treeView.getSelectionModel().getSelectedItem();
         int droneX = drone.getLocationX() + drone.getWidth()/2;
         int droneY = drone.getLocationY() + drone.getLength()/2;
         int targetX = selectedTreeItem.getValue().getLocationX() + selectedTreeItem.getValue().getWidth()/2;
         int targetY = selectedTreeItem.getValue().getLocationY() + selectedTreeItem.getValue().getLength()/2;
-        int toX = -(droneX - targetX);
-        int toY = -(droneY - targetY);
-        int droneToTargetDistance = (int) Math.sqrt((targetY - droneY) * (targetY - droneY) + (targetX - droneX) * (targetX - droneX));
-        int travelTime = droneToTargetDistance / 30;
-        //Instantiating TranslateTransition class
-        TranslateTransition translate = new TranslateTransition();
-        //shifting the X and Y coordinates to designation
-        translate.setFromX(0);
-        translate.setFromY(0);
-        translate.setToX(toX);
-        translate.setToY(toY);
-        //setting the duration for the Translate transition
-        translate.setDuration(Duration.millis(1000));
-        //setting cycle count for the Translate transition
-        translate.setCycleCount(2);
-        //the transition will set to be auto reversed by setting this to true
-        translate.setAutoReverse(true);
-        //setting drone graphic as the node onto which the transition will be applied
-        translate.setNode(droneGraphic);
-        //playing the transition
-        translate.play();
+
+        SimulationDrone drone = new SimulationDrone();
+        try {
+            TelloDrone drone1 = new TelloDrone();
+        } catch (SocketException e) {
+            e.printStackTrace();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+        MultiRotorDrone droneAdapter = new DroneAdapter(drone);
+        try {
+            droneAdapter.hoverInPlace(5);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        drone.flytoLocation(droneGraphic,new Point(droneX,droneY), new Point(targetX,targetY));
+    }
+
+    public float getAngle(Point target, float x, float y) {
+        float angle = (float) Math.toDegrees(Math.atan2(-(target.y - y),(target.x - x)));
+
+        return angle;
     }
 
     //draw a new component's rectangular outline for display on the dashboard overview.
