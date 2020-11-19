@@ -26,7 +26,7 @@ public class MainApp extends Application {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
             loader.setController(rootLayoutController);
-            loader.setLocation(MainApp.class.getResource("view/RootLayout3OLD.fxml"));
+            loader.setLocation(MainApp.class.getResource("view/RootLayout.fxml"));
             rootLayout = loader.load();
 
             // Show the scene containing the root layout.

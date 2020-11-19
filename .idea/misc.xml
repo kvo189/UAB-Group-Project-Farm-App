@@ -4,6 +4,7 @@
     <option name="state" value="project://e79810c8-c5c8-43b1-b19c-90c1f4095425" />
   </component>
   <component name="ProjectResources">
+    <resource url="http://javafx.com/javafx/8.0.171" location="$PROJECT_DIR$" />
     <resource url="xmlns:fx=&quot;http://javafx.com/fxml&quot;" location="$PROJECT_DIR$" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">

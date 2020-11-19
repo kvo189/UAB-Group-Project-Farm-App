@@ -310,13 +310,13 @@ public class RootLayoutController {
     // Add a new drone to the farm.
     //TODO COMPLETE THIS
     @FXML
-    public void handleSimulation(){
+    public void handleLaunchSimulation(){
 
     }
 
     //TODO COMPLETE THIS
     @FXML
-    public void handleLaunch(){
+    public void handleLaunchDrone(){
 
     }
     // Add a new drone to the farm.
