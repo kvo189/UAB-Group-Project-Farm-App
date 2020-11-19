@@ -1,11 +1,9 @@
 package controllers;
 
-import javafx.animation.PauseTransition;
-import javafx.animation.RotateTransition;
-import javafx.animation.SequentialTransition;
-import javafx.animation.TranslateTransition;
+import javafx.animation.*;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.*;
 import javafx.util.Duration;
 
 import java.awt.*;
@@ -13,13 +11,47 @@ import java.awt.*;
 public class SimulationDrone implements SimulateDrone {
     private int hoverDuration;
 
+
     SimulationDrone(){
 
     }
 
     @Override
-    public void scanFarm(int speed) {
+    public void scanFarm(Node droneGraphic,double droneX, double droneY, double droneW, double droneL) {
+        int rootLength = Constants.FARMWIDTH;
+        int rootWidth = Constants.FARMHEIGHT;
 
+        Path path = new Path();
+
+        double droneSpeed = 30;
+
+
+        path.getElements().add(new MoveTo(droneW,droneL));
+        path.getElements().add(new LineTo(-droneX + droneW, -droneY ));
+        path.getElements().add(new VLineTo(rootLength - droneL - droneY));
+        path.getElements().add(new HLineTo(droneW - droneX + droneW));
+        path.getElements().add(new VLineTo(- droneY + droneL));
+
+        for (int i = 100; i < rootWidth; i+=100) {
+            path.getElements().add(new HLineTo(i - droneX + droneW));
+            path.getElements().add(new VLineTo(rootLength -droneL - droneY));
+            path.getElements().add(new HLineTo(i+droneW - droneX + droneW));
+            path.getElements().add(new VLineTo(- droneY + droneL));
+        }
+
+
+
+        path.getElements().add(new LineTo(droneW, droneL));
+
+        PathTransition pathTransition = new PathTransition();
+
+
+        pathTransition.setDuration(Duration.millis(rootLength*(rootWidth/droneW)/(droneSpeed/droneL)));
+        pathTransition.setPath(path);
+        pathTransition.setNode(droneGraphic);
+        pathTransition.setCycleCount(1);
+        pathTransition.setAutoReverse(true);
+        pathTransition.play();
     }
 
     @Override
@@ -73,16 +105,12 @@ public class SimulationDrone implements SimulateDrone {
         seq.getChildren().add(rt2);
         seq.play();
     }
-
+/*
     @Override
     public void deleteDrone(ImageView drone) {
 
     }
-
-    public void setHoverDuration(int seconds){
-        hoverDuration = seconds;
-    }
-
+*/
     public float getAngle(Point target, float x, float y) {
         float angle = (float) Math.toDegrees(Math.atan2(-(target.y - y),(target.x - x)));
 

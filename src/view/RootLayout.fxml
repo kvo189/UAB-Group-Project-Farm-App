@@ -1,133 +1,188 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="900.0" minWidth="1200.0" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <top>
-        <MenuBar BorderPane.alignment="CENTER">
-            <Menu mnemonicParsing="false" text="File">
-                <MenuItem mnemonicParsing="false" text="Close" />
-            </Menu>
-            <Menu mnemonicParsing="false" text="Edit">
-                <MenuItem mnemonicParsing="false" text="Delete" />
-            </Menu>
-            <Menu mnemonicParsing="false" text="Help">
-                <MenuItem mnemonicParsing="false" text="About" />
-            </Menu>
-        </MenuBar>
-    </top>
-   <left>
-       <AnchorPane minWidth="400.0" prefHeight="872.0" prefWidth="510.0" BorderPane.alignment="CENTER">
-           <SplitPane dividerPositions="0.6614310645724258" orientation="VERTICAL" prefHeight="575.0" prefWidth="385.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="562.0" prefWidth="448.0">
-                   <Label layoutX="14.0" layoutY="31.0" text="Farm Items" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="16.0" />
-                   <TreeView fx:id="treeView" layoutX="16.0" layoutY="33.0" prefHeight="211.0" prefWidth="153.0" />
-                   <Button fx:id="saveBtn" layoutX="266.0" layoutY="231.0" minWidth="46.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="25.0" prefWidth="65.0" text="Save" />
-                   <GridPane layoutX="183.0" layoutY="38.0" prefHeight="167.0" prefWidth="302.0">
-                       <columnConstraints>
-                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="154.0" minWidth="10.0" prefWidth="154.0" />
-                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="105.0" />
-                       </columnConstraints>
-                       <rowConstraints>
-                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                       </rowConstraints>
-                       <TextField fx:id="nameTextField" prefHeight="27.0" prefWidth="150.0" GridPane.columnIndex="1">
-                     <padding>
-                        <Insets bottom="2.0" />
-                     </padding></TextField>
-                       <HBox prefHeight="34.0" prefWidth="148.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                           <TextField prefHeight="0.0" prefWidth="72.0" fx:id="xTextField">
-                               <HBox.margin>
-                                   <Insets left="2.0" />
-                               </HBox.margin>
-                           </TextField>
-                           <TextField fx:id="yTextField" prefHeight="27.0" prefWidth="72.0">
-                               <HBox.margin>
-                                   <Insets left="2.0" />
-                               </HBox.margin>
-                        <padding>
-                           <Insets bottom="2.0" top="2.0" />
-                        </padding>
-                           </TextField>
-                       </HBox>
-                       <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                           <TextField fx:id="lTextField" prefHeight="25.0" prefWidth="48.0">
-                               <HBox.margin>
-                                   <Insets right="5.0" top="1.0" />
-                               </HBox.margin>
-                           </TextField>
-                           <TextField fx:id="wTextField" prefHeight="25.0" prefWidth="48.0">
-                               <HBox.margin>
-                                   <Insets right="5.0" top="1.0" />
-                               </HBox.margin>
-                           </TextField>
-                           <TextField fx:id="hTextField" prefHeight="25.0" prefWidth="48.0">
-                               <HBox.margin>
-                                   <Insets top="1.0" />
-                               </HBox.margin>
-                           </TextField>
-                       </HBox>
-                       <TextField fx:id="priceTextField" prefHeight="25.0" prefWidth="120.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                       <Label text="Name:" />
-                       <Label text="Position (X,Y):" GridPane.rowIndex="1" />
-                       <Label text="Size (L,W,H):" GridPane.rowIndex="2" />
-                       <Label fx:id="pricetextField" text="Price:" GridPane.rowIndex="3" />
-                  <Label text="Market Value" GridPane.rowIndex="5" />
-                  <TextField fx:id="marketValueTextField" prefHeight="95.0" prefWidth="176.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                     <GridPane.margin>
-                        <Insets bottom="2.0" top="2.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <Label fx:id="purchasePriceLabel" text="Purchase Price" GridPane.rowIndex="4" />
-                  <TextField fx:id="purchasePriceTextField" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                   </GridPane>
-                   <VBox layoutX="14.0" layoutY="253.0" prefHeight="115.0" prefWidth="157.0">
-                       <Button mnemonicParsing="false" onAction="#handleAddDrone" prefHeight="25.0" prefWidth="155.0" text="+ Add Drone">
-                           <VBox.margin>
-                               <Insets bottom="5.0" />
-                           </VBox.margin>
-                       </Button>
-                       <Button fx:id="addItemBtn" mnemonicParsing="false" onAction="#handleAddItem" prefHeight="25.0" prefWidth="155.0" text="+ Add Item">
-                           <VBox.margin>
-                               <Insets bottom="5.0" />
-                           </VBox.margin>
-                       </Button>
-                       <Button fx:id="addItemContainerBtn" mnemonicParsing="false" onAction="#handleAddItemContainer" prefHeight="25.0" prefWidth="154.0" text="+ Add Item Container">
-                           <VBox.margin>
-                               <Insets bottom="5.0" />
-                           </VBox.margin>
-                       </Button>
-                       <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#handleDelete" prefHeight="25.0" prefWidth="154.0" text="- Delete Selected" />
-                   </VBox>
-               </AnchorPane>
-               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="398.0">
-                   <Label layoutX="123.0" layoutY="14.0" text="Drone Commands">
-                       <font>
-                           <Font name="System Bold" size="18.0" />
-                       </font>
-                   </Label>
-                   <ButtonBar layoutX="35.0" layoutY="41.0" prefHeight="40.0" prefWidth="329.0">
-                       <buttons>
-                           <Button mnemonicParsing="false" onAction="#handleVisitItem" prefHeight="25.0" prefWidth="188.0" text="Visit Item/Item Container" />
-                           <Button mnemonicParsing="false" onAction="#handleScanFarm" text="Scan Farm" />
-                       </buttons>
-                       <padding>
-                           <Insets right="10.0" />
-                       </padding>
-                   </ButtonBar>
-               </AnchorPane>
-           </SplitPane>
-       </AnchorPane>
-   </left>
+<BorderPane fx:id="rootLayout" minHeight="-Infinity" minWidth="-Infinity" prefWidth="1072.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <MenuBar fx:id="menuBar" style="-fx-background-color: #908fc2;" BorderPane.alignment="CENTER">
+        <menus>
+          <Menu fx:id="fileMenuDropDown" mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem fx:id="exitMenuItem" mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu fx:id="helpMenuDropDown" mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
    <center>
-      <AnchorPane fx:id="visualPane" maxHeight="800.0" maxWidth="600.0" minHeight="800.0" minWidth="600.0" prefHeight="800.0" prefWidth="600.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER" />
+      <SplitPane fx:id="leftRightSplitPane" dividerPositions="0.29797979797979796" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <items>
+          <AnchorPane fx:id="leftAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="415.0">
+               <children>
+                  <SplitPane fx:id="topBottomSplitPane" dividerPositions="0.7132459970887919" layoutX="7.0" layoutY="56.0" orientation="VERTICAL" prefHeight="369.0" prefWidth="174.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="225.0" prefWidth="375.0" style="-fx-background-color: #1a1a1a;">
+                           <children>
+                              <TreeView fx:id="treeView" layoutX="23.0" layoutY="37.0" prefHeight="287.0" prefWidth="132.0" style="-fx-background-color: #a9a3c7;" />
+                              <Label alignment="TOP_CENTER" layoutX="25.0" layoutY="15.0" prefHeight="17.0" prefWidth="132.0" style="-fx-background-color: #2e2e2e;" text="Farm Items" textFill="#eeeeee" />
+                              <GridPane layoutX="168.0" layoutY="98.0" prefHeight="180.0" prefWidth="200.0">
+                                <columnConstraints>
+                                  <ColumnConstraints fx:id="gridPane" hgrow="SOMETIMES" maxWidth="104.0" minWidth="10.0" prefWidth="82.72634887695312" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.71942138671875" minWidth="10.0" prefWidth="117.27365112304688" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label text="Name/ID" textFill="#dddddd">
+                                       <GridPane.margin>
+                                          <Insets />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label text="Position (x, y)" textFill="#dddddd" GridPane.rowIndex="1" />
+                                    <Label text="Size (L,W,H)" textFill="#dddddd" GridPane.rowIndex="2" />
+                                    <Label text="Price" textFill="#dddddd" GridPane.rowIndex="3" />
+                                    <Label text="Purchase Price" textFill="#dddddd" GridPane.rowIndex="4" />
+                                    <Label text="Market Value" textFill="#dddddd" GridPane.rowIndex="5" />
+                                    <TextField fx:id="nameTextField" style="-fx-background-color: #c2dbfc;" GridPane.columnIndex="1">
+                                       <GridPane.margin>
+                                          <Insets />
+                                       </GridPane.margin>
+                                    </TextField>
+                                    <TextField fx:id="priceTextField" style="-fx-background-color: #dcfae9;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField fx:id="purchasePriceTextField" style="-fx-background-color: #c5ebd5;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <TextField fx:id="marketValueTextField" style="-fx-background-color: #a6e0ca;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <children>
+                                          <TextField prefHeight="27.0" prefWidth="63.0" style="-fx-background-color: #b8e7fc;" fx:id="xTextField">
+                                             <HBox.margin>
+                                                <Insets right="2.0" />
+                                             </HBox.margin>
+                                          </TextField>
+                                          <TextField fx:id="yTextField" prefHeight="27.0" prefWidth="57.0" style="-fx-background-color: #c2ebfc;">
+                                             <HBox.margin>
+                                                <Insets left="2.0" />
+                                             </HBox.margin>
+                                          </TextField>
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                       <children>
+                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <TextField fx:id="lTextField" style="-fx-background-color: #ceebe5;">
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </TextField>
+                                                <TextField fx:id="wTextField" style="-fx-background-color: #caf9fc;">
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </TextField>
+                                                <TextField fx:id="hTextField" style="-fx-background-color: #ceebe5;" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </GridPane>
+                              <Label alignment="TOP_CENTER" layoutX="170.0" layoutY="15.0" prefHeight="17.0" prefWidth="194.0" style="-fx-background-color: #3e3e3e;" text="Item Detail" textFill="#eeeeee" />
+                              <ButtonBar layoutX="10.0" layoutY="399.0" prefHeight="40.0" prefWidth="359.0">
+                                <buttons>
+                                    <Button fx:id="addItemBtn" minWidth="50.0" mnemonicParsing="false" onAction="#handleAddItem" prefHeight="27.0" prefWidth="182.0" text="+Item" />
+                                  <Button fx:id="addItemContainer" mnemonicParsing="false" onAction="#handleAddItemContainer" prefHeight="27.0" text="+ Item Container">
+                                       <font>
+                                          <Font size="12.0" />
+                                       </font></Button>
+                                    <Button fx:id="addDroneBtn" minWidth="50.0" mnemonicParsing="false" onAction="#handleAddDrone" prefHeight="27.0" text="+Drone" />
+                                </buttons>
+                              </ButtonBar>
+                              <ButtonBar layoutX="120.0" layoutY="324.0" prefHeight="40.0" prefWidth="200.0">
+                                <buttons>
+                                  <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#handleDelete" text="Delete" />
+                                    <Button fx:id="saveBtn" mnemonicParsing="false" onAction="#handleSave" text="Save" />
+                                </buttons>
+                              </ButtonBar>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane fx:id="bottomLeftAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="285.0" prefWidth="375.0" style="-fx-background-color: #362C36;">
+                           <children>
+                              <ButtonBar fx:id="droneCommandBtnBar" depthTest="ENABLE" layoutX="-56.0" layoutY="90.0" prefHeight="76.0" prefWidth="372.0">
+                                <buttons>
+                                  <Button fx:id="launchSimulationBtn" mnemonicParsing="false" onAction="#handleLaunchSimulation" text="Launch Simulation">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                    <Button fx:id="launchDroneBtn" mnemonicParsing="false" onAction="#handleLaunchDrone" text="Launch Drone">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                </buttons>
+                              </ButtonBar>
+                              <HBox fx:id="toggleBtnGroup" layoutX="62.0" layoutY="26.0" prefHeight="42.0" prefWidth="254.0">
+                                 <children>
+                                    <ToggleButton fx:id="selectVisitItemToggleBtn" mnemonicParsing="false" onAction="#handleSelectVisitItem" style="-fx-background-color: Gold;" text="Visit Selected Item">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="toggleGroup1" />
+                                       </toggleGroup>
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                       <effect>
+                                          <Glow />
+                                       </effect>
+                                    </ToggleButton>
+                                    <ToggleButton fx:id="selectScanFarmToggleBtn" mnemonicParsing="false" onAction="#handleSelectScanFarm" prefHeight="27.0" prefWidth="110.0" selected="true" style="-fx-background-color: Pink;" text="Scan Farm" toggleGroup="$toggleGroup1">
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                       <effect>
+                                          <Glow level="0.12" />
+                                       </effect>
+                                    </ToggleButton>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+          <AnchorPane fx:id="visualPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" style="-fx-background-color: #DDDDDD;" />
+        </items>
+      </SplitPane>
    </center>
 </BorderPane>

@@ -11,7 +11,7 @@ package controllers;
 public class Constants {
 		
 	public static final int FARMWIDTH = 800; // farm width on screen in pixels 4:3 ratio
-	public static final int FARMHEIGHT = 600; // farm height on screen in pixels 4:3 ratio
+	public static final int FARMHEIGHT = 600; // farm height on scr+een in pixels 4:3 ratio
 	public static final int FARMDEPTH = 0;
 	
 	public static final int MODELWIDTH = 32; // farm width physical model in feet 4:3 ratio
