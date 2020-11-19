@@ -52,6 +52,7 @@ public class RootLayoutController<group> {
 
 
 
+
     //This rectangle is blue and forms a box around the drone image. Drone image lives in this box. Together they are easy to see in clutter.
     private Rectangle droneGraphic;
     // Root Layout
@@ -81,7 +82,7 @@ public class RootLayoutController<group> {
     private void initialize() {
         ItemContainer farm = new ItemContainer("Farm", 0, 0, 0, 800, 600, 0);
         ItemContainer barn = new ItemContainer("Barn", 1000, 10, 15, 200, 100, 50);
-        Item cow = new Item("Cow", 1000, 30, 30, 35, 20, 20, 50, 1000);
+        Item cow = new Item("Cow", 1000, 30, 30, 35, 20, 20, 1000, 1000);
         barn.addComp(cow);
         farm.addComp(barn);
 
@@ -202,10 +203,6 @@ public class RootLayoutController<group> {
         item.setWidth(widthVal);
         item.setHeight(heightVal);
         item.setPrice(priceVal);
-        purchasePriceTextField.setText(String.valueOf(item.getPrice()));
-        if (item instanceof Item){
-            item.setMarketValue(marketVal);
-        }
         visualPane.getChildren().clear();
         drawComponents(treeView.getRoot());
     }
@@ -215,7 +212,7 @@ public class RootLayoutController<group> {
     private void handleAddItem() {
         TreeItem<Component> selectedTreeItem = treeView.getSelectionModel().getSelectedItem();
         if (selectedTreeItem.getValue() instanceof ItemContainer){
-            Item newItem = new Item("ITEM", 0, selectedTreeItem.getValue().getLocationX(), selectedTreeItem.getValue().getLocationY(), ((ItemContainer) selectedTreeItem.getValue()).getHeight(), 0, 0, 0, 1000);
+            Item newItem = new Item("ITEM", 0, selectedTreeItem.getValue().getLocationX(), selectedTreeItem.getValue().getLocationY(), ((ItemContainer) selectedTreeItem.getValue()).getHeight(), 0, 0, 1000, 1000);
             TreeItem<Component> newItemNode = new TreeItem<>(newItem);
             selectedTreeItem.getValue().addComp(newItem);
             selectedTreeItem.getChildren().add(newItemNode);
@@ -319,11 +316,9 @@ public class RootLayoutController<group> {
 
         if (selectScanFarmToggleBtn.isSelected()){
             handleScanFarm();
-        }
-
-        if (selectVisitItemToggleBtn.isSelected()){
+        } else {
             handleVisitItem();
-        }
+        };
 
     }
     // Add a new drone to the farm.
