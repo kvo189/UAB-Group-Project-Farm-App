@@ -22,3 +22,4 @@ public class PurchasePriceVisitor implements Visitor{
         return totalPrice;
     }
 }
+
