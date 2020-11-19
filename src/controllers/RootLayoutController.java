@@ -343,7 +343,15 @@ public class RootLayoutController<group> {
 
     //TODO COMPLETE THIS
     @FXML
-    public void handleLaunchDrone(){
+    private void handleLaunchDrone(){
+
+        if (selectScanFarmToggleBtn.isSelected()){
+            handleScanFarm();
+        }
+
+        if (selectVisitItemToggleBtn.isSelected()){
+            handleVisitItem();
+        }
 
     }
     // Add a new drone to the farm.
