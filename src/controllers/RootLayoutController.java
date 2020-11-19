@@ -295,17 +295,36 @@ public class RootLayoutController {
         pathTransition.play();
     }
 
-    //TODO COMPLETE THIS
-    @FXML
-    public void handleSimulator(){}
 
     //TODO COMPLETE THIS
     @FXML
-    public void handleLaunch(){}
+    public void handleSelectScanFarm(){
+
+    }
+
+    //TODO COMPLETE THIS
+    @FXML
+    public void handleSelectVisitItem(){
+
+    }
+    // Add a new drone to the farm.
+    //TODO COMPLETE THIS
+    @FXML
+    public void handleSimulation(){
+
+    }
+
+    //TODO COMPLETE THIS
+    @FXML
+    public void handleLaunch(){
+
+    }
     // Add a new drone to the farm.
 
 
 
+
+    //add a new drone to the farm
     @FXML
     private void handleAddDrone () {
         if (drone != null){
