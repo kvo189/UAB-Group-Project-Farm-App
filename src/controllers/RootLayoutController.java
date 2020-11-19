@@ -1,8 +1,7 @@
 package controllers;
 
-import javafx.animation.*;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Point2D;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -10,17 +9,12 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.*;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import javafx.util.Duration;
 import model.*;
 import model.Component;
 
 import java.awt.*;
-import java.io.IOException;
-import java.net.SocketException;
-import java.net.UnknownHostException;
 import java.util.function.UnaryOperator;
 
 public class RootLayoutController {
@@ -32,15 +26,19 @@ public class RootLayoutController {
     //declare our text fields
     @FXML
     private TextField nameTextField, xTextField, yTextField, lTextField, wTextField, hTextField, priceTextField;
-    //Save Button
-    @FXML
-    private Button saveBtn;
+
     @FXML
     private AnchorPane visualPane;
+    @FXML
+    public Button saveBtn, getLaunchDroneBtn, getLaunchSimulationBtn;
+
+    @FXML
+    public RadioButton selectVisitItemRadioBtn, selectScanFarmBtn;
     private Drone drone = null;
     //This rectangle is blue and forms a box around the drone image. Drone image lives in this box. Together they are easy to see in clutter.
     private Rectangle droneGraphic;
     // Root Layout
+    @FXML
     private static RootLayoutController rootLayout;
     //parameterless constructor for RootLayoutController
     private RootLayoutController() {}
@@ -283,6 +281,7 @@ public class RootLayoutController {
 
     }
 
+
     //TODO COMPLETE THIS
     @FXML
     public void handleLaunch(){
@@ -401,5 +400,16 @@ public class RootLayoutController {
         alert.setHeaderText(header);
         alert.setContentText(content);
         alert.showAndWait();
+    }
+
+
+
+
+
+
+    public void handleLaunchSimulation(ActionEvent actionEvent) {
+    }
+
+    public void handleLaunchDrone(ActionEvent actionEvent) {
     }
 }
