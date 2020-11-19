@@ -20,6 +20,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
+
 <BorderPane fx:id="rootLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <MenuBar fx:id="menuBar" style="-fx-background-color: #908fc2;" BorderPane.alignment="CENTER">
@@ -118,7 +119,7 @@
                               <Label alignment="TOP_CENTER" layoutX="170.0" layoutY="15.0" prefHeight="17.0" prefWidth="194.0" style="-fx-background-color: #3e3e3e;" text="Item Detail" textFill="#eeeeee" />
                            </children>
                         </AnchorPane>
-                      <AnchorPane fx:id="bottomLeftAnchorPane" minHeight="0.0" minWidth="0.0" style="-fx-background-color: #362C36;">
+                      <AnchorPane fx:id="bottomLeftAnchorPane" minHeight="0.0" minWidth="0.0" style="-fx-background-color: #362C36; >
                            <children>
                               <ButtonBar fx:id="droneCommandBtnBar" depthTest="ENABLE" layoutX="-16.0" layoutY="206.0" prefHeight="76.0" prefWidth="372.0">
                                 <buttons>
