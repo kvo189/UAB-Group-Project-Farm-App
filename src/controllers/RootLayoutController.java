@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.*;
@@ -22,7 +23,7 @@ import model.ItemContainer;
 
 import java.util.function.UnaryOperator;
 
-public class RootLayoutController {
+public class RootLayoutController<group> {
     //declare our variables
 
     //tree view to show the composite design pattern implementation....
@@ -37,6 +38,19 @@ public class RootLayoutController {
     @FXML
     private AnchorPane visualPane;
     private Drone drone = null;
+
+    @FXML
+    private ToggleGroup toggleButtonGroup1;
+    @FXML
+    private ToggleButton selectScanFarmToggleBtn;
+    private ToggleButton selectVisitItemToggleBtn;
+
+
+
+
+
+
+
     //This rectangle is blue and forms a box around the drone image. Drone image lives in this box. Together they are easy to see in clutter.
     private Rectangle droneGraphic;
     // Root Layout
@@ -73,6 +87,7 @@ public class RootLayoutController {
         TreeItem<Component> rootNode = new TreeItem<>(farm);
         TreeItem<Component> barnNode = new TreeItem<>(barn);
         TreeItem<Component> cowNode = new TreeItem<>(cow);
+
 
 
 
@@ -296,6 +311,15 @@ public class RootLayoutController {
     }
 
 
+
+
+
+
+
+
+
+
+
     //TODO COMPLETE THIS
     @FXML
     public void handleSelectScanFarm(){
@@ -311,6 +335,9 @@ public class RootLayoutController {
     //TODO COMPLETE THIS
     @FXML
     public void handleLaunchSimulation(){
+
+
+
 
     }
 
