@@ -2,6 +2,7 @@ package model;
 
 //Item class......it extends the Component class (following composite design pattern)
 public class Item extends Component{
+    private int purchasePrice;
     //item attributes
     private int price;
     private int locationX;
