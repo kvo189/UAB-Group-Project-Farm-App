@@ -130,8 +130,8 @@
                               </ButtonBar>
                               <ButtonBar layoutX="84.0" layoutY="415.0" prefHeight="39.0" prefWidth="277.0">
                                  <buttons>
-                                  <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#handleDelete" style="-fx-background-color: DARKRED;" text="-Delete Selected" textFill="#f2e0e0" />
-                                    <Button fx:id="saveBtn" blendMode="LIGHTEN" mnemonicParsing="false" mouseTransparent="true" onAction="#handleSave" prefHeight="27.0" prefWidth="164.0" style="-fx-background-color: #4A1DAD;" text="+Save Item" textFill="#eeeeee" />
+                                     <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#handleDelete" style="-fx-background-color: DARKRED;" text="-Delete Selected" textFill="#f2e0e0" />
+                                     <Button fx:id="saveBtn"  mnemonicParsing="false"  onAction="#handleSave" prefHeight="27.0" prefWidth="164.0" style="-fx-background-color: #4A1DAD;" text="+ Save Item" textFill="#eeeeee" />
                                  </buttons>
                               </ButtonBar>
                            </children>

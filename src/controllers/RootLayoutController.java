@@ -34,9 +34,12 @@ public class RootLayoutController<group> {
     @FXML
     private TextField nameTextField, xTextField, yTextField, lTextField, wTextField, hTextField, priceTextField,
             marketValueTextField, purchasePriceTextField;
-    //Save Button
+
+    //Save
+
     @FXML
     private Button saveBtn;
+
     @FXML
     private AnchorPane visualPane;
     private Drone drone = null;
@@ -45,6 +48,7 @@ public class RootLayoutController<group> {
     private ToggleGroup toggleButtonGroup1;
     @FXML
     private ToggleButton selectScanFarmToggleBtn;
+    @FXML
     private ToggleButton selectVisitItemToggleBtn;
 
 
