@@ -131,46 +131,43 @@
                               <ButtonBar layoutX="84.0" layoutY="415.0" prefHeight="39.0" prefWidth="277.0">
                                  <buttons>
                                      <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#handleDelete" style="-fx-background-color: DARKRED;" text="-Delete Selected" textFill="#f2e0e0" />
-                                     <Button fx:id="saveBtn"  mnemonicParsing="false"  onAction="#handleSave" prefHeight="27.0" prefWidth="164.0" style="-fx-background-color: #4A1DAD;" text="+ Save Item" textFill="#eeeeee" />
+                                     <Button fx:id="saveBtn" mnemonicParsing="false" onAction="#handleSave" prefHeight="27.0" prefWidth="164.0" style="-fx-background-color: #4A1DAD;" text="+ Save Item" textFill="#eeeeee" />
                                  </buttons>
                               </ButtonBar>
                            </children>
                         </AnchorPane>
                       <AnchorPane fx:id="bottomLeftAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="285.0" prefWidth="375.0" style="-fx-background-color: #362C36;">
                            <children>
-                              <ButtonBar fx:id="droneCommandBtnBar" depthTest="ENABLE" layoutX="-56.0" layoutY="90.0" prefHeight="76.0" prefWidth="372.0">
+                              <ButtonBar fx:id="droneCommandBtnBar" depthTest="ENABLE" layoutX="67.0" layoutY="90.0" prefHeight="76.0" prefWidth="276.0">
                                 <buttons>
-                                  <Button fx:id="launchSimulationBtn" mnemonicParsing="false" onAction="#handleLaunchSimulation" text="Launch Simulation">
+                                  <Button fx:id="launchSimulationBtn" alignment="CENTER" mnemonicParsing="false" onAction="#handleLaunchSimulation" text="Launch Simulation">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </Button>
-                                    <Button fx:id="launchDroneBtn" mnemonicParsing="false" onAction="#handleLaunchDrone" text="Launch Drone">
+                                    <Button fx:id="launchDroneBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleLaunchDrone" text="Launch Drone">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </Button>
                                 </buttons>
                               </ButtonBar>
-                              <HBox fx:id="toggleBtnGroup" layoutX="62.0" layoutY="26.0" prefHeight="42.0" prefWidth="254.0">
+                              <HBox fx:id="toggleBtnGroup" layoutX="103.0" layoutY="26.0" prefHeight="42.0" prefWidth="254.0">
                                  <children>
-                                    <ToggleButton fx:id="selectVisitItemToggleBtn" mnemonicParsing="false" onAction="#handleSelectVisitItem" style="-fx-background-color: Gold;" text="Visit Selected Item">
+                                    <ToggleButton fx:id="selectVisitItemToggleBtn" mnemonicParsing="false" onAction="#handleSelectVisitItem" style="-fx-background-color: DARKSLATEGRAY;" text="Visit Selected Item" textFill="#eeeeee">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="toggleGroup1" />
                                        </toggleGroup>
                                        <HBox.margin>
                                           <Insets right="10.0" />
                                        </HBox.margin>
-                                       <effect>
-                                          <Glow />
-                                       </effect>
                                     </ToggleButton>
-                                    <ToggleButton fx:id="selectScanFarmToggleBtn" mnemonicParsing="false" onAction="#handleSelectScanFarm" prefHeight="27.0" prefWidth="110.0" selected="true" style="-fx-background-color: Pink;" text="Scan Farm" toggleGroup="$toggleGroup1">
+                                    <ToggleButton fx:id="selectScanFarmToggleBtn" mnemonicParsing="false" onAction="#handleSelectScanFarm" prefHeight="27.0" prefWidth="110.0" selected="true" style="-fx-background-color: Green;" text="Scan Farm" textFill="#eeeeee" toggleGroup="$toggleGroup1">
                                        <HBox.margin>
                                           <Insets right="10.0" />
                                        </HBox.margin>
                                        <effect>
-                                          <Glow level="0.12" />
+                                          <Glow level="0.65" />
                                        </effect>
                                     </ToggleButton>
                                  </children>

@@ -6,6 +6,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -53,11 +54,6 @@ public class RootLayoutController<group> {
 
 
 
-
-
-
-
-
     //This rectangle is blue and forms a box around the drone image. Drone image lives in this box. Together they are easy to see in clutter.
     private Rectangle droneGraphic;
     // Root Layout
@@ -67,6 +63,10 @@ public class RootLayoutController<group> {
     //This is drone.png, which is our depiction of our drone flying around.
     private final Image dronePng = new Image("drone.png");
 
+
+    //toggle buttons glow when selected
+    public Glow glowEffectScanFarmToggle = new Glow();
+    public Glow glowEffectVisitItemToggle = new Glow();
     //Singleton pattern setup for RootLayoutController
     /**
      * Initializes an instance of the controller if one has not been created.
@@ -109,6 +109,13 @@ public class RootLayoutController<group> {
 
         drawComponents(rootNode);
 
+
+
+        //Calibrating visual indication (Glow effect) for selected toggle buttons...glow = on, not glowing = off.
+        selectVisitItemToggleBtn.setEffect(glowEffectVisitItemToggle);
+        selectScanFarmToggleBtn.setEffect(glowEffectScanFarmToggle);
+        glowEffectVisitItemToggle.setLevel(0.00);
+        glowEffectScanFarmToggle.setLevel(0.65);
 
 
 
@@ -302,24 +309,36 @@ public class RootLayoutController<group> {
 
 
 
+
     //TODO COMPLETE THIS
     @FXML
     public void handleSelectScanFarm(){
+        selectScanFarmToggleBtn.setStyle("-fx-background-color : GREEN");
+        selectVisitItemToggleBtn.setStyle("-fx-background-color: darkslategray");
+
+        glowEffectVisitItemToggle.setLevel(0.00);
+        glowEffectScanFarmToggle.setLevel(0.65);
+
 
     }
 
     //TODO COMPLETE THIS
     @FXML
     public void handleSelectVisitItem(){
+        selectVisitItemToggleBtn.setStyle("-fx-background-color : GREEN");
+
+        selectScanFarmToggleBtn.setStyle("-fx-background-color: darkslategray");
+
+        glowEffectVisitItemToggle.setLevel(0.65);
+        glowEffectScanFarmToggle.setLevel(0.00);
+
+
 
     }
     // Add a new drone to the farm.
     //TODO COMPLETE THIS
     @FXML
     public void handleLaunchSimulation(){
-
-
-
 
     }
 
