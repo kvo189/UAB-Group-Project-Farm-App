@@ -32,7 +32,8 @@ public class RootLayoutController<group> {
     private TreeView<Component> treeView;
     //declare our text fields
     @FXML
-    private TextField nameTextField, xTextField, yTextField, lTextField, wTextField, hTextField, priceTextField;
+    private TextField nameTextField, xTextField, yTextField, lTextField, wTextField, hTextField, priceTextField,
+            marketValueTextField, purchasePriceTextField;
     //Save Button
     @FXML
     private Button saveBtn;
@@ -137,6 +138,8 @@ public class RootLayoutController<group> {
                     wTextField.setText(String.valueOf(cellItem.getWidth()));
                     hTextField.setText(String.valueOf(cellItem.getHeight()));
                     priceTextField.setText(String.valueOf(cellItem.getPrice()));
+                    marketValueTextField.setText(String.valueOf(cellItem.accept(new MarketValueVisitor())));
+                    purchasePriceTextField.setText(String.valueOf(cellItem.accept(new PurchasePriceVisitor())));
                 }
             });
 
