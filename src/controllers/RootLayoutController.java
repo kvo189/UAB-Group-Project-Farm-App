@@ -144,6 +144,12 @@ public class RootLayoutController<group> {
                     priceTextField.setText(String.valueOf(cellItem.getPrice()));
                     marketValueTextField.setText(String.valueOf(cellItem.accept(new MarketValueVisitor())));
                     purchasePriceTextField.setText(String.valueOf(cellItem.accept(new PurchasePriceVisitor())));
+
+                    if (cellItem instanceof ItemContainer){
+                        marketValueTextField.setDisable(true);
+                    }else{
+                        marketValueTextField.setDisable(false);
+                    }
                 }
             });
 
