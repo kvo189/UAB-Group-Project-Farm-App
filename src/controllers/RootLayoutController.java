@@ -52,6 +52,9 @@ public class RootLayoutController<group> {
     @FXML
     private ToggleButton selectVisitItemToggleBtn;
 
+    //Danny
+    private TelloDrone telloDrone;
+
 
 
     //This rectangle is blue and forms a box around the drone image. Drone image lives in this box. Together they are easy to see in clutter.
@@ -335,21 +338,43 @@ public class RootLayoutController<group> {
 
 
     }
+    //Danny
     // Add a new drone to the farm.
     //TODO COMPLETE THIS
     @FXML
     public void handleLaunchSimulation(){
-
-    }
-
-    //TODO COMPLETE THIS
-    @FXML
-    private void handleLaunchDrone(){
-
         if (selectScanFarmToggleBtn.isSelected()){
             handleScanFarm();
         } else {
             handleVisitItem();
+        };
+    }
+    //Danny
+    //TODO COMPLETE THIS
+    @FXML
+    private void handleLaunchDrone(){
+
+        DroneAdapter adaptedDrone = new DroneAdapter(telloDrone);
+        if (drone == null || telloDrone == null) {
+            showErrorDialog("Invalid Operation", null, "\"Visit Item/Item Containers\" can only be performed when a drone component exists!");
+            return;
+        }
+
+        if (selectScanFarmToggleBtn.isSelected()){
+            int droneX = drone.getLocationX();
+            int droneY = drone.getLocationY();
+            double droneW = (double)drone.getWidth()/2;
+            double droneL = (double)drone.getLength()/2;
+
+            adaptedDrone.scanFarm(droneGraphic, droneX, droneY, droneW, droneL);
+        } else {
+            TreeItem<Component> selectedTreeItem = treeView.getSelectionModel().getSelectedItem();
+            int droneX = drone.getLocationX() + drone.getWidth()/2;
+            int droneY = drone.getLocationY() + drone.getLength()/2;
+            int targetX = selectedTreeItem.getValue().getLocationX() + selectedTreeItem.getValue().getWidth()/2;
+            int targetY = selectedTreeItem.getValue().getLocationY() + selectedTreeItem.getValue().getLength()/2;
+
+            adaptedDrone.flytoLocation(droneGraphic, new Point(droneX, droneY), new Point(targetX, targetY));
         };
 
     }
@@ -373,6 +398,14 @@ public class RootLayoutController<group> {
             selectedTreeItem.getChildren().add(droneNode);
             visualPane.getChildren().clear();
             drawComponents(treeView.getRoot());
+
+            //Danny
+            try{
+                telloDrone = new TelloDrone();
+            } catch (Exception e){
+                System.out.println(e.toString());
+            }
+
         }else{
             showErrorDialog("Invalid Operation", null, "\"Add Item\" can only be performed on Item Containers!");
         }
