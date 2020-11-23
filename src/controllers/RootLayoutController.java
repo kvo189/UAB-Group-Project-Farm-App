@@ -235,7 +235,7 @@ public class RootLayoutController<group> {
     private void handleAddItem() {
         TreeItem<Component> selectedTreeItem = treeView.getSelectionModel().getSelectedItem();
         if (selectedTreeItem.getValue() instanceof ItemContainer){
-            Item newItem = new Item("ITEM", 0, selectedTreeItem.getValue().getLocationX(), selectedTreeItem.getValue().getLocationY(), ((ItemContainer) selectedTreeItem.getValue()).getHeight(), 0, 0, 1000, 1000);
+            Item newItem = new Item("ITEM", 0, selectedTreeItem.getValue().getLocationX(), selectedTreeItem.getValue().getLocationY(), ((ItemContainer) selectedTreeItem.getValue()).getHeight(), 20, 20, 1000, 1000);
             TreeItem<Component> newItemNode = new TreeItem<>(newItem);
             selectedTreeItem.getValue().addComp(newItem);
             selectedTreeItem.getChildren().add(newItemNode);
@@ -353,6 +353,8 @@ public class RootLayoutController<group> {
     //TODO COMPLETE THIS
     @FXML
     private void handleLaunchDrone(){
+        System.out.println("Physical drone launch selected, but this is commented out due to lack of access to physical drone.");
+        /*
 
         DroneAdapter adaptedDrone = new DroneAdapter(telloDrone);
         if (drone == null || telloDrone == null) {
@@ -376,6 +378,8 @@ public class RootLayoutController<group> {
 
             adaptedDrone.flytoLocation(droneGraphic, new Point(droneX, droneY), new Point(targetX, targetY));
         };
+
+        */
 
     }
     // Add a new drone to the farm.
