@@ -1,28 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleButton?>
-<?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.control.TreeView?>
-<?import javafx.scene.effect.Glow?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane fx:id="rootLayout" minHeight="-Infinity" minWidth="-Infinity" prefWidth="1072.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="rootLayout" minHeight="-Infinity" minWidth="-Infinity" prefWidth="1072.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <MenuBar fx:id="menuBar" style="-fx-background-color: #908fc2;" BorderPane.alignment="CENTER">
         <menus>
@@ -117,58 +102,82 @@
                                     </HBox>
                                  </children>
                               </GridPane>
-                              <Label alignment="TOP_CENTER" layoutX="170.0" layoutY="15.0" prefHeight="17.0" prefWidth="194.0" style="-fx-background-color: #3e3e3e;" text="Item Detail" textFill="#eeeeee" />
+                              <Label alignment="TOP_CENTER" layoutX="170.0" layoutY="15.0" prefHeight="17.0" prefWidth="286.0" style="-fx-background-color: #3e3e3e;" text="Item Detail" textFill="#eeeeee" />
                               <ButtonBar layoutX="43.0" layoutY="308.0" prefHeight="40.0" prefWidth="359.0">
                                 <buttons>
-                                    <Button fx:id="addItemBtn" minWidth="50.0" mnemonicParsing="false" onAction="#handleAddItem" prefHeight="27.0" prefWidth="182.0" style="-fx-background-color: Green;" text="+Add New Item" textFill="#fefefe" />
+                                    <Button fx:id="addItemBtn" minWidth="50.0" mnemonicParsing="false" onAction="#handleAddItem" prefHeight="27.0" prefWidth="182.0" style="-fx-background-color: Green;" text="+Add New Item" textFill="#fefefe">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font></Button>
                                   <Button fx:id="addItemContainer" mnemonicParsing="false" onAction="#handleAddItemContainer" prefHeight="27.0" style="-fx-background-color: #fffccc;" text="+ Item Container">
                                        <font>
-                                          <Font size="12.0" />
+                                          <Font size="10.0" />
                                        </font></Button>
-                                    <Button fx:id="addDroneBtn" minWidth="50.0" mnemonicParsing="false" onAction="#handleAddDrone" prefHeight="27.0" style="-fx-background-color: ORANGE;" text="+Drone" textFill="#0d0101" />
+                                    <Button fx:id="addDroneBtn" minWidth="50.0" mnemonicParsing="false" onAction="#handleAddDrone" prefHeight="27.0" style="-fx-background-color: ORANGE;" text="+Drone" textFill="#0d0101">
+                                       <font>
+                                          <Font size="11.0" />
+                                       </font></Button>
                                 </buttons>
                               </ButtonBar>
                               <ButtonBar layoutX="84.0" layoutY="415.0" prefHeight="39.0" prefWidth="277.0">
                                  <buttons>
-                                     <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#handleDelete" style="-fx-background-color: DARKRED;" text="-Delete Selected" textFill="#f2e0e0" />
-                                     <Button fx:id="saveBtn" mnemonicParsing="false" onAction="#handleSave" prefHeight="27.0" prefWidth="164.0" style="-fx-background-color: #4A1DAD;" text="+ Save Item" textFill="#eeeeee" />
+                                     <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#handleDelete" prefHeight="32.0" style="-fx-background-color: DARKRED;" text="-Delete Selected" textFill="#f2e0e0">
+                                       <font>
+                                          <Font size="11.0" />
+                                       </font></Button>
+                                     <Button fx:id="saveBtn" mnemonicParsing="false" onAction="#handleSave" prefHeight="37.0" prefWidth="164.0" style="-fx-background-color: #4A1DAD;" text="+ Save Item" textFill="#eeeeee">
+                                       <font>
+                                          <Font size="11.0" />
+                                       </font></Button>
                                  </buttons>
                               </ButtonBar>
                            </children>
                         </AnchorPane>
                       <AnchorPane fx:id="bottomLeftAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="285.0" prefWidth="375.0" style="-fx-background-color: #362C36;">
                            <children>
-                              <ButtonBar fx:id="droneCommandBtnBar" depthTest="ENABLE" layoutX="67.0" layoutY="90.0" prefHeight="76.0" prefWidth="276.0">
+                              <ButtonBar fx:id="droneCommandBtnBar" depthTest="ENABLE" layoutX="28.0" layoutY="90.0" prefHeight="76.0" prefWidth="347.0">
                                 <buttons>
                                   <Button fx:id="launchSimulationBtn" alignment="CENTER" mnemonicParsing="false" onAction="#handleLaunchSimulation" text="Launch Simulation">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
+                                       <font>
+                                          <Font size="11.0" />
+                                       </font>
                                     </Button>
-                                    <Button fx:id="launchDroneBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleLaunchDrone" text="Launch Drone">
+                                    <Button fx:id="launchDroneBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleLaunchDrone" prefHeight="22.0" prefWidth="164.0" text="Launch Drone">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
+                                       <font>
+                                          <Font size="11.0" />
+                                       </font>
                                     </Button>
                                 </buttons>
                               </ButtonBar>
-                              <HBox fx:id="toggleBtnGroup" layoutX="103.0" layoutY="26.0" prefHeight="42.0" prefWidth="254.0">
+                              <HBox fx:id="toggleBtnGroup" layoutX="73.0" layoutY="26.0" prefHeight="42.0" prefWidth="331.0">
                                  <children>
-                                    <ToggleButton fx:id="selectVisitItemToggleBtn" mnemonicParsing="false" onAction="#handleSelectVisitItem" style="-fx-background-color: DARKSLATEGRAY;" text="Visit Selected Item" textFill="#eeeeee">
+                                    <ToggleButton fx:id="selectVisitItemToggleBtn" mnemonicParsing="false" onAction="#handleSelectVisitItem" prefHeight="46.0" prefWidth="127.0" style="-fx-background-color: DARKSLATEGRAY;" text="Visit Selected Item" textFill="#eeeeee">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="toggleGroup1" />
                                        </toggleGroup>
                                        <HBox.margin>
                                           <Insets right="10.0" />
                                        </HBox.margin>
+                                       <font>
+                                          <Font size="11.0" />
+                                       </font>
                                     </ToggleButton>
-                                    <ToggleButton fx:id="selectScanFarmToggleBtn" mnemonicParsing="false" onAction="#handleSelectScanFarm" prefHeight="27.0" prefWidth="110.0" selected="true" style="-fx-background-color: Green;" text="Scan Farm" textFill="#eeeeee" toggleGroup="$toggleGroup1">
+                                    <ToggleButton fx:id="selectScanFarmToggleBtn" mnemonicParsing="false" onAction="#handleSelectScanFarm" prefHeight="43.0" prefWidth="141.0" selected="true" style="-fx-background-color: Green;" text="Scan Farm" textFill="#eeeeee" toggleGroup="$toggleGroup1">
                                        <HBox.margin>
                                           <Insets right="10.0" />
                                        </HBox.margin>
                                        <effect>
                                           <Glow level="0.65" />
                                        </effect>
+                                       <font>
+                                          <Font size="11.0" />
+                                       </font>
                                     </ToggleButton>
                                  </children>
                               </HBox>

@@ -1,15 +1,18 @@
 package controllers;
 
 import javafx.animation.*;
+import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.*;
 import javafx.util.Duration;
+import javafx.animation.RotateTransition;
 
 import java.awt.*;
 
 public class SimulationDrone implements SimulateDrone {
     private int hoverDuration;
+
 
 
     SimulationDrone(){
@@ -20,7 +23,6 @@ public class SimulationDrone implements SimulateDrone {
     public void scanFarm(Node droneGraphic,double droneX, double droneY, double droneW, double droneL) {
         int rootLength = Constants.FARMWIDTH;
         int rootWidth = Constants.FARMHEIGHT;
-
         Path path = new Path();
 
         double droneSpeed = 30;
@@ -37,6 +39,9 @@ public class SimulationDrone implements SimulateDrone {
             path.getElements().add(new VLineTo(rootLength -droneL - droneY));
             path.getElements().add(new HLineTo(i+droneW - droneX + droneW));
             path.getElements().add(new VLineTo(- droneY + droneL));
+
+
+
         }
 
 
