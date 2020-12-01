@@ -328,7 +328,7 @@ public class RootLayoutController<group> {
     @FXML
     private void handleLaunchDrone(){
         System.out.println("Physical drone launch selected, but this is commented out due to lack of access to physical drone.");
-        /*
+
 
         DroneAdapter adaptedDrone = new DroneAdapter(telloDrone);
         if (drone == null || telloDrone == null) {
@@ -353,7 +353,7 @@ public class RootLayoutController<group> {
             adaptedDrone.flytoLocation(droneGraphic, new Point(droneX, droneY), new Point(targetX, targetY));
         };
 
-        */
+
 
     }
     //add a new drone to the farm

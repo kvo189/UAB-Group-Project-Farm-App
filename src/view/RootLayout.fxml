@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:id="rootLayout" minHeight="-Infinity" minWidth="-Infinity" prefWidth="1072.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="rootLayout" minHeight="-Infinity" minWidth="-Infinity" prefWidth="1072.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <MenuBar fx:id="menuBar" style="-fx-background-color: #908fc2;" BorderPane.alignment="CENTER">
         <menus>
@@ -35,7 +35,7 @@
                            <children>
                               <TreeView fx:id="treeView" layoutX="23.0" layoutY="37.0" prefHeight="245.0" prefWidth="132.0" style="-fx-background-color: #eeeeee;" />
                               <Label alignment="TOP_CENTER" layoutX="25.0" layoutY="15.0" prefHeight="17.0" prefWidth="132.0" style="-fx-background-color: #2e2e2e;" text="Farm Items" textFill="#eeeeee" />
-                              <GridPane layoutX="246.0" layoutY="103.0" prefHeight="180.0" prefWidth="200.0">
+                              <GridPane layoutX="192.0" layoutY="57.0" prefHeight="182.0" prefWidth="237.0">
                                 <columnConstraints>
                                   <ColumnConstraints fx:id="gridPane" hgrow="SOMETIMES" maxWidth="104.0" minWidth="10.0" prefWidth="82.72634887695312" />
                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.71942138671875" minWidth="10.0" prefWidth="117.27365112304688" />
@@ -103,7 +103,7 @@
                                  </children>
                               </GridPane>
                               <Label alignment="TOP_CENTER" layoutX="170.0" layoutY="15.0" prefHeight="17.0" prefWidth="286.0" style="-fx-background-color: #3e3e3e;" text="Item Detail" textFill="#eeeeee" />
-                              <ButtonBar layoutX="43.0" layoutY="308.0" prefHeight="40.0" prefWidth="359.0">
+                              <ButtonBar layoutX="43.0" layoutY="324.0" prefHeight="69.0" prefWidth="359.0">
                                 <buttons>
                                     <Button fx:id="addItemBtn" minWidth="50.0" mnemonicParsing="false" onAction="#handleAddItem" prefHeight="27.0" prefWidth="182.0" style="-fx-background-color: Green;" text="+Add New Item" textFill="#fefefe">
                                        <font>
@@ -119,7 +119,7 @@
                                        </font></Button>
                                 </buttons>
                               </ButtonBar>
-                              <ButtonBar layoutX="84.0" layoutY="415.0" prefHeight="39.0" prefWidth="277.0">
+                              <ButtonBar layoutX="84.0" layoutY="409.0" prefHeight="34.0" prefWidth="277.0">
                                  <buttons>
                                      <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#handleDelete" prefHeight="32.0" style="-fx-background-color: DARKRED;" text="-Delete Selected" textFill="#f2e0e0">
                                        <font>
