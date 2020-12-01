@@ -98,10 +98,6 @@ public class RootLayoutController<group> {
         TreeItem<Component> barnNode = new TreeItem<>(barn);
         TreeItem<Component> cowNode = new TreeItem<>(cow);
 
-
-
-
-
         treeView.setRoot(rootNode);
         treeView.getSelectionModel().selectFirst();
         rootNode.setExpanded(true);
@@ -112,15 +108,11 @@ public class RootLayoutController<group> {
 
         drawComponents(rootNode);
 
-
-
         //Calibrating visual indication (Glow effect) for selected toggle buttons...glow = on, not glowing = off.
         selectVisitItemToggleBtn.setEffect(glowEffectVisitItemToggle);
         selectScanFarmToggleBtn.setEffect(glowEffectScanFarmToggle);
         glowEffectVisitItemToggle.setLevel(0.00);
         glowEffectScanFarmToggle.setLevel(0.65);
-
-
 
         //This is used to create the cells in our tree.
         treeView.setCellFactory(tv ->{
@@ -138,7 +130,6 @@ public class RootLayoutController<group> {
                     }
                 }
             };
-
 
             // cell selected? If so...
             cell.selectedProperty().addListener((observable, prevSelected, newSelected) -> {
@@ -302,17 +293,6 @@ public class RootLayoutController<group> {
         drone.scanFarm(droneGraphic, droneX, droneY, droneW, droneL);
     }
 
-
-
-
-
-
-
-
-
-
-
-
     //TODO COMPLETE THIS
     @FXML
     public void handleSelectScanFarm(){
@@ -382,11 +362,6 @@ public class RootLayoutController<group> {
         */
 
     }
-    // Add a new drone to the farm.
-
-
-
-
     //add a new drone to the farm
     @FXML
     private void handleAddDrone () {
@@ -396,7 +371,7 @@ public class RootLayoutController<group> {
         }
         TreeItem<Component> selectedTreeItem = treeView.getSelectionModel().getSelectedItem();
         if (selectedTreeItem.getValue() instanceof ItemContainer){
-            drone = new Drone("Drone", 0, selectedTreeItem.getValue().getLocationX(), selectedTreeItem.getValue().getLocationY(), ((ItemContainer) selectedTreeItem.getValue()).getHeight(), 50, 50, 5);
+            drone = new Drone("Drone", 0, selectedTreeItem.getValue().getLocationX(), selectedTreeItem.getValue().getLocationY(), 50, 50, 5, 5);
             TreeItem<Component> droneNode = new TreeItem<>(drone);
             selectedTreeItem.getValue().addComp(drone);
             selectedTreeItem.getChildren().add(droneNode);

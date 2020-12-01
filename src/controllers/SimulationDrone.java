@@ -12,9 +12,6 @@ import java.awt.*;
 
 public class SimulationDrone implements SimulateDrone {
     private int hoverDuration;
-
-
-
     SimulationDrone(){
 
     }
@@ -27,7 +24,6 @@ public class SimulationDrone implements SimulateDrone {
 
         double droneSpeed = 30;
 
-
         path.getElements().add(new MoveTo(droneW,droneL));
         path.getElements().add(new LineTo(-droneX + droneW, -droneY ));
         path.getElements().add(new VLineTo(rootLength - droneL - droneY));
@@ -39,17 +35,10 @@ public class SimulationDrone implements SimulateDrone {
             path.getElements().add(new VLineTo(rootLength -droneL - droneY));
             path.getElements().add(new HLineTo(i+droneW - droneX + droneW));
             path.getElements().add(new VLineTo(- droneY + droneL));
-
-
-
         }
-
-
-
         path.getElements().add(new LineTo(droneW, droneL));
 
         PathTransition pathTransition = new PathTransition();
-
 
         pathTransition.setDuration(Duration.millis(rootLength*(rootWidth/droneW)/(droneSpeed/droneL)));
         pathTransition.setPath(path);
@@ -110,12 +99,7 @@ public class SimulationDrone implements SimulateDrone {
         seq.getChildren().add(rt2);
         seq.play();
     }
-/*
-    @Override
-    public void deleteDrone(ImageView drone) {
 
-    }
-*/
     public float getAngle(Point target, float x, float y) {
         float angle = (float) Math.toDegrees(Math.atan2(-(target.y - y),(target.x - x)));
 
