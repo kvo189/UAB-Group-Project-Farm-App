@@ -336,25 +336,22 @@ public class RootLayoutController<group> {
             return;
         }
 
-        if (selectScanFarmToggleBtn.isSelected()){
-            int droneX = drone.getLocationX();
-            int droneY = drone.getLocationY();
-            double droneW = (double)drone.getWidth()/2;
-            double droneL = (double)drone.getLength()/2;
-
-            adaptedDrone.scanFarm(droneGraphic, droneX, droneY, droneW, droneL);
-        } else {
-            TreeItem<Component> selectedTreeItem = treeView.getSelectionModel().getSelectedItem();
-            int droneX = drone.getLocationX() + drone.getWidth()/2;
-            int droneY = drone.getLocationY() + drone.getLength()/2;
-            int targetX = selectedTreeItem.getValue().getLocationX() + selectedTreeItem.getValue().getWidth()/2;
-            int targetY = selectedTreeItem.getValue().getLocationY() + selectedTreeItem.getValue().getLength()/2;
-
-            adaptedDrone.flytoLocation(droneGraphic, new Point(droneX, droneY), new Point(targetX, targetY));
-        };
-
-
-
+//        if (selectScanFarmToggleBtn.isSelected()){
+//            int droneX = drone.getLocationX();
+//            int droneY = drone.getLocationY();
+//            double droneW = (double)drone.getWidth()/2;
+//            double droneL = (double)drone.getLength()/2;
+//
+//            adaptedDrone.scanFarm(droneGraphic, droneX, droneY, droneW, droneL);
+//        } else {
+//            TreeItem<Component> selectedTreeItem = treeView.getSelectionModel().getSelectedItem();
+//            int droneX = drone.getLocationX() + drone.getWidth()/2;
+//            int droneY = drone.getLocationY() + drone.getLength()/2;
+//            int targetX = selectedTreeItem.getValue().getLocationX() + selectedTreeItem.getValue().getWidth()/2;
+//            int targetY = selectedTreeItem.getValue().getLocationY() + selectedTreeItem.getValue().getLength()/2;
+//
+//            adaptedDrone.flytoLocation(droneGraphic, new Point(droneX, droneY), new Point(targetX, targetY));
+//        };
     }
     //add a new drone to the farm
     @FXML
