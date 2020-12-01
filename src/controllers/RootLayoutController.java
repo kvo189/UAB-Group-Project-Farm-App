@@ -298,25 +298,17 @@ public class RootLayoutController<group> {
     public void handleSelectScanFarm(){
         selectScanFarmToggleBtn.setStyle("-fx-background-color : GREEN");
         selectVisitItemToggleBtn.setStyle("-fx-background-color: darkslategray");
-
         glowEffectVisitItemToggle.setLevel(0.00);
         glowEffectScanFarmToggle.setLevel(0.65);
-
-
     }
 
     //TODO COMPLETE THIS
     @FXML
     public void handleSelectVisitItem(){
         selectVisitItemToggleBtn.setStyle("-fx-background-color : GREEN");
-
         selectScanFarmToggleBtn.setStyle("-fx-background-color: darkslategray");
-
         glowEffectVisitItemToggle.setLevel(0.65);
         glowEffectScanFarmToggle.setLevel(0.00);
-
-
-
     }
     //Danny
     // Add a new drone to the farm.
@@ -405,7 +397,6 @@ public class RootLayoutController<group> {
         int targetY = selectedTreeItem.getValue().getLocationY() + selectedTreeItem.getValue().getLength()/2;
 
         SimulationDrone drone = new SimulationDrone();
-
 
         drone.flytoLocation(droneGraphic,new Point(droneX,droneY), new Point(targetX,targetY));
     }
