@@ -184,7 +184,8 @@ public class RootLayoutController<group> {
                 lengthVal = Integer.parseInt(lTextField.getText()),
                 widthVal = Integer.parseInt(wTextField.getText()),
                 heightVal = Integer.parseInt(hTextField.getText()),
-                priceVal = Integer.parseInt(priceTextField.getText());
+                priceVal = Integer.parseInt(priceTextField.getText()),
+                marketVal = Integer.parseInt(marketValueTextField.getText());
 
 
         //if the x or y coordinates are outside the bounds of the root (farm)
@@ -217,6 +218,7 @@ public class RootLayoutController<group> {
         item.setWidth(widthVal);
         item.setHeight(heightVal);
         item.setPrice(priceVal);
+        item.setMarketValue(marketVal);
         visualPane.getChildren().clear();
         drawComponents(treeView.getRoot());
     }
