@@ -218,7 +218,9 @@ public class RootLayoutController<group> {
         item.setWidth(widthVal);
         item.setHeight(heightVal);
         item.setPrice(priceVal);
-        item.setMarketValue(marketVal);
+        if (item instanceof Item) {
+            item.setMarketValue(marketVal);
+        }
         visualPane.getChildren().clear();
         drawComponents(treeView.getRoot());
     }
