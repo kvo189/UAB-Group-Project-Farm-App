@@ -65,7 +65,7 @@
                                        </GridPane.margin>
                                     </TextField>
                                     <TextField fx:id="priceTextField" style="-fx-background-color: #daf2ed;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <TextField fx:id="purchasePriceTextField" style="-fx-background-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <TextField fx:id="purchasePriceTextField" disable="true" style="-fx-background-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                     <TextField fx:id="marketValueTextField" disable="true" style="-fx-background-color: #daf2ed;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                     <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <children>
