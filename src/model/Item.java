@@ -12,7 +12,6 @@ public class Item extends Component{
     private int purchasePrice;
     private int marketValue;
 
-
     //Item constructor
     public Item(String name, int price, int locationX, int locationY, int length, int width, int height, int purchasePrice, int marketValue){
         //item params

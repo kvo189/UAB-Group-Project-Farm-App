@@ -187,7 +187,7 @@
                   </SplitPane>
                </children>
             </AnchorPane>
-          <AnchorPane fx:id="visualPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" style="-fx-background-color: #DDDDDD;" />
+          <AnchorPane fx:id="visualPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="805.0" minWidth="605.0" prefHeight="805.0" prefWidth="605.0" style="-fx-background-color: #DDDDDD;" />
         </items>
       </SplitPane>
    </center>

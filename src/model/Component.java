@@ -7,9 +7,6 @@ import javafx.beans.property.StringProperty;
 public abstract class Component {
     private final StringProperty name = new SimpleStringProperty();
 
-
-
-
     // this is a component class
     public Component(String name){
         setName(name);

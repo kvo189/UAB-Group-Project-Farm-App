@@ -330,7 +330,7 @@ public class RootLayoutController<group> {
         System.out.println("Physical drone launch selected, but this is commented out due to lack of access to physical drone.");
 
 
-        DroneAdapter adaptedDrone = new DroneAdapter(telloDrone);
+        SimulateDrone adaptedDrone = new DroneAdapter(telloDrone);
         if (drone == null || telloDrone == null) {
             showErrorDialog("Invalid Operation", null, "\"Visit Item/Item Containers\" can only be performed when a drone component exists!");
             return;

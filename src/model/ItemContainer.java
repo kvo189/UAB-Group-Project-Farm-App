@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 //ItemContainer extends component. ItemContainer holds items.
 public class ItemContainer extends Component{
     //ItemContainer parameters declared here.
@@ -33,8 +32,6 @@ public class ItemContainer extends Component{
         this.height = height;
 
     }
-
-    //@Override stuff
 
     // return the contents in itemComponents ArrayList (itemComponents is an ArrayList<Component> & Item--> Component)
     public ArrayList<Component> getItemComponents() {
