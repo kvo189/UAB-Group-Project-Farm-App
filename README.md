@@ -1,5 +1,4 @@
 <h1> Farm Application:</h1>
-<h3>Design and Implementation Part 1        |      CS 420, Fall 2020       |      Due Oct. 23, 2020     | Undergraduate Group 5</h3>
 Our group has created a dashboard for our automated farm application. 
 We have also created an animation depicting the movement of a drone throughout the farm.
 <br>
@@ -35,4 +34,3 @@ Eclipse will most likely work, but may need some tweaking since migrating projec
 <br>**Will Watts:** Gitlab setup, Readme file, Drone.png, UML, misc. git related assistance/documentation for team, debugging & misc. 
 <br>**Taylor Witt:** Composite Implementation, Drone Animation, UML, Item, Miscellaneous Code Assistance
 
-<h1>[Project Wiki](https://gitlab.com/watts57/uab-cs-420-group-project/-/wikis/Wiki/Catalog-%7C-Table-Of-Contents) </h1>
